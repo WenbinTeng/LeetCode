@@ -14,10 +14,12 @@ private:
     void dfs(int num) {
         if (num > max) return; else ++res;
         
-        if (num & 1) {
+        if (num & 1)
+        {
             dfs(num << 1);
         }
-        else {
+        else
+        {
             dfs((num << 1) + 0);
             dfs((num << 1) + 1);
         }
