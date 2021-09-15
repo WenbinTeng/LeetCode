@@ -5,7 +5,7 @@ class Solution {
 public:
     int maximumScore(std::vector<int>& nums, std::vector<int>& multipliers) {
         std::vector<std::vector<int>> dp(1001, std::vector<int>(1001, 0));
-        int res = -__INT_MAX__ - 1;
+        int res = -INT_MAX - 1;
         int n = nums.size();
         int m = multipliers.size();
         for (int k = 1; k <= m; ++k)

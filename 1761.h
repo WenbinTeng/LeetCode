@@ -3,7 +3,7 @@
 class Solution {
 public:
     int minTrioDegree(int n, std::vector<std::vector<int>>& edges) {
-        int res = __INT_MAX__;
+        int res = INT_MAX;
         std::vector<int> indegree(n + 1, 0);
         std::vector<std::vector<int>> adjacent(n + 1, std::vector(n + 1, 0));
         for (const auto& iter : edges)
@@ -30,6 +30,6 @@ public:
             }
         }
 
-        return res == __INT_MAX__ ? -1 : res;
+        return res == INT_MAX ? -1 : res;
     }
 };

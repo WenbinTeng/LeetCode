@@ -5,7 +5,7 @@ class Solution {
 public:
     int minCut(std::string s) {
         std::vector<std::vector<bool>> dp(s.size(), std::vector<bool>(s.size(), false));
-        std::vector<int> f(s.size(), __INT_MAX__);
+        std::vector<int> f(s.size(), INT_MAX);
 
         for (int i = 0; i < s.size(); ++i)
         {

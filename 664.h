@@ -18,7 +18,7 @@ public:
                 }
                 else
                 {
-                    dp[i][j] = __INT_MAX__;
+                    dp[i][j] = INT_MAX;
 
                     for (int k = i; k < j; ++k)
                     {

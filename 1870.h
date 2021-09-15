@@ -9,7 +9,7 @@ public:
 
         int res = -1;
         int l = 1;
-        int r = __INT_MAX__;
+        int r = INT_MAX;
 
         while (l <= r)
         {

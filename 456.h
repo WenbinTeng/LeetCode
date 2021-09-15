@@ -7,7 +7,7 @@ public:
         std::stack<int> s;
 
         int n = nums.size();
-        int k = -__INT_MAX__ - 1;
+        int k = -INT_MAX - 1;
 
         for (int i = n - 1; i >= 0; --i)
         {

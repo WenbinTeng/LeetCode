@@ -8,7 +8,7 @@ public:
         std::vector<std::unordered_map<int, int>> groups(k);
         std::vector<int> numCnt(nums.size(), 0);
         std::vector<int> maxVal(nums.size(), 0);
-        int res = __INT_MAX__;
+        int res = INT_MAX;
 
         for (int i = 0; i < k; ++i)
         {
@@ -45,17 +45,17 @@ public:
 private:
     int dfs(std::vector<std::vector<int>>& mem, std::vector<std::unordered_map<int, int>>& groups, std::vector<int>& numCnt, int index, int k, int last)
     {
-        if (index == k) {return last == 0 ? 0 : __INT_MAX__;}
+        if (index == k) {return last == 0 ? 0 : INT_MAX;}
 
         if (mem[index][last] != -1) return mem[index][last];
 
-        int res = __INT_MAX__;
-        int rec = __INT_MAX__;
+        int res = INT_MAX;
+        int rec = INT_MAX;
 
         for (const auto& [num, cnt] : groups[index])
         {
             rec = dfs(mem, groups, numCnt, index + 1, k, last ^ num);
-            res = rec == __INT_MAX__ ? res : std::min(res, numCnt[index] - cnt + rec);
+            res = rec == INT_MAX ? res : std::min(res, numCnt[index] - cnt + rec);
         }
 
         return mem[index][last] = res;

@@ -12,7 +12,7 @@ private:
 
     int dfs(std::vector<std::vector<int>>& grid, int rowIndex, int colIndex)
     {
-        if (rowIndex >= grid.size() || colIndex >= grid[0].size()) return __INT_MAX__;
+        if (rowIndex >= grid.size() || colIndex >= grid[0].size()) return INT_MAX;
 
         if (rowIndex == grid.size() - 1 && colIndex == grid[0].size() - 1) return grid[rowIndex][colIndex];
 

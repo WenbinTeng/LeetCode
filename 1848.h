@@ -4,7 +4,7 @@
 class Solution {
 public:
     int getMinDistance(std::vector<int>& nums, int target, int start) {
-        int res = __INT_MAX__;
+        int res = INT_MAX;
 
         for (int i = 0; i < nums.size(); ++i)
         {

@@ -4,7 +4,7 @@
 class Solution {
 public:
     int minSwaps(std::string s) {
-        int res = __INT_MAX__;
+        int res = INT_MAX;
         int cnt = 0;
         int zero = std::count(s.begin(), s.end(), '0');
         int ones = std::count(s.begin(), s.end(), '1');
@@ -30,6 +30,6 @@ public:
         flag = 1;
         helper();
 
-        return res == __INT_MAX__ ? -1 : res;
+        return res == INT_MAX ? -1 : res;
     }
 };

@@ -19,6 +19,6 @@ public:
 private:
     int searchHeight(TreeNode* node, int h)
     {
-        return node == nullptr ? __INT_MAX__ : node->left == nullptr && node->right == nullptr ? h + 1 : std::min(searchHeight(node->left, h + 1), searchHeight(node->right, h + 1));
+        return node == nullptr ? INT_MAX : node->left == nullptr && node->right == nullptr ? h + 1 : std::min(searchHeight(node->left, h + 1), searchHeight(node->right, h + 1));
     }
 };

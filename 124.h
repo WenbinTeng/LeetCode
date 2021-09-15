@@ -18,7 +18,7 @@ public:
     }
 
 private:
-    int maxVal = -__INT_MAX__ - 1;
+    int maxVal = -INT_MAX - 1;
 
     int searchPath(TreeNode* node)
     {

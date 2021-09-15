@@ -5,7 +5,7 @@ class Solution {
 public:
     int countRestrictedPaths(int n, std::vector<std::vector<int>>& edges) {
         std::vector<std::vector<std::pair<int, int>>> graph(n + 1);
-        std::vector<int>  dis(n + 1, __INT_MAX__);
+        std::vector<int>  dis(n + 1, INT_MAX);
         std::vector<int>  mem(n + 1, -1);
         std::vector<bool> vis(n + 1, false);
         std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;

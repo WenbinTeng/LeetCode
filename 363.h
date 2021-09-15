@@ -4,7 +4,7 @@
 class Solution {
 public:
     int maxSumSubmatrix(std::vector<std::vector<int>> &matrix, int k) {
-        int res = -__INT_MAX__ - 1;
+        int res = -INT_MAX - 1;
         int m = matrix   .size();
         int n = matrix[0].size();
         std::vector<int> colSum(n, 0);

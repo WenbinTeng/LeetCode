@@ -6,7 +6,7 @@ public:
     std::string minWindow(std::string s, std::string t) {
         for (const auto& iter : t) ++rec[iter];
 
-        int len = __INT_MAX__;
+        int len = INT_MAX;
         int index = -1;
         int l = 0;
         int r = 0;

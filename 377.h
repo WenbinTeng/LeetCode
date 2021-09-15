@@ -10,7 +10,7 @@ public:
         {
             for (const auto &num : nums)
             {
-                if (num <= i && dp[i - num] < __INT_MAX__ - dp[i]) dp[i] += dp[i - num];
+                if (num <= i && dp[i - num] < INT_MAX - dp[i]) dp[i] += dp[i - num];
             }
         }
         

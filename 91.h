@@ -16,7 +16,7 @@ private:
 
         int res = 0;
         int num1 = s[index] - '0';
-        int num2 = s[index] - '0' == 0 ? __INT_MAX__ : (s[index] - '0') * 10 + s[index + 1] - '0';
+        int num2 = s[index] - '0' == 0 ? INT_MAX : (s[index] - '0') * 10 + s[index + 1] - '0';
 
         if (num1 !=  0) res += mem[index + 1] == -1 ? dfs(s, mem, index + 1) : mem[index + 1];
         if (num2 <= 26) res += mem[index + 2] == -1 ? dfs(s, mem, index + 2) : mem[index + 2];
