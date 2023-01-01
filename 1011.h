@@ -1,23 +1,19 @@
-#include <vector>
-#include <numeric>
 #include <algorithm>
+#include <numeric>
+#include <vector>
 
 class Solution {
 public:
-    int shipWithinDays(std::vector<int>& weights, int D) {
+    int shipWithinDays(std::vector<int> &weights, int D) {
         int l = *std::max_element(weights.begin(), weights.end());
-        int r =  std::accumulate (weights.begin(), weights.end(), 0);
+        int r = std::accumulate(weights.begin(), weights.end(), 0);
 
-        while (l < r)
-        {
+        while (l < r) {
             int mid = (l + r) / 2;
 
-            if (isValid(weights, D, mid))
-            {
+            if (isValid(weights, D, mid)) {
                 r = mid;
-            }
-            else
-            {
+            } else {
                 l = mid + 1;
             }
         }
@@ -26,25 +22,21 @@ public:
     }
 
 private:
-    bool isValid(std::vector<int>& weights, int D, int cap)
-    {
+    bool isValid(std::vector<int> &weights, int D, int cap) {
         int cnt = 0;
         int sum = 0;
-        
-        for (const auto& w : weights)
-        {
-            if (sum + w > cap)
-            {
-                sum  = w;
+
+        for (const auto &w : weights) {
+            if (sum + w > cap) {
+                sum = w;
                 cnt += 1;
-            }
-            else
-            {
+            } else {
                 sum += w;
             }
         }
 
-        if (sum > 0) ++cnt;
+        if (sum > 0)
+            ++cnt;
 
         return cnt <= D;
     }

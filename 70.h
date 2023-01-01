@@ -10,8 +10,7 @@ public:
 private:
     std::vector<int> mem;
 
-    int dfs(int n)
-    {
+    int dfs(int n) {
         return mem[n] == -1 ? (mem[n] = n <= 1 ? 1 : dfs(n - 1) + dfs(n - 2)) : mem[n];
     }
 };

@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,13 +11,13 @@ struct TreeNode
 
 class Solution {
 public:
-    int minDepth(TreeNode* root) {
+    int minDepth(TreeNode *root) {
         return root == nullptr ? 0 : searchHeight(root, 0);
     }
 
 private:
-    int searchHeight(TreeNode* node, int h)
-    {
-        return node == nullptr ? INT_MAX : node->left == nullptr && node->right == nullptr ? h + 1 : std::min(searchHeight(node->left, h + 1), searchHeight(node->right, h + 1));
+    int searchHeight(TreeNode *node, int h) {
+        return node == nullptr ? INT_MAX : node->left == nullptr && node->right == nullptr ? h + 1
+                                                                                           : std::min(searchHeight(node->left, h + 1), searchHeight(node->right, h + 1));
     }
 };

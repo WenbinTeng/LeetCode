@@ -1,6 +1,6 @@
-#include <vector>
 #include <string>
 #include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
@@ -9,10 +9,10 @@ public:
         int m = s2.size();
         std::vector<std::vector<std::unordered_set<int>>> dp(n + 1, std::vector<std::unordered_set<int>>(m + 1));
 
-        auto isDigit = [](char c){ return c >= '0' && c <= '9'; };
+        auto isDigit = [](char c) { return c >= '0' && c <= '9'; };
 
         dp[0][0].insert(0);
-                
+
         for (int i = 0; i <= n; ++i) {
             for (int j = 0; j <= m; ++j) {
                 for (int delta : dp[i][j]) {
@@ -25,7 +25,7 @@ public:
                             break;
                         }
                     }
-                    
+
                     num = 0;
                     for (int q = j; q < std::min(j + 3, m); ++q) {
                         if (isDigit(s2[q])) {
@@ -35,19 +35,19 @@ public:
                             break;
                         }
                     }
-                    
-                    if (i < n && delta < 0 && !isDigit(s1[i])) 
+
+                    if (i < n && delta < 0 && !isDigit(s1[i]))
                         dp[i + 1][j].insert(delta + 1);
-                            
-                    if (j < m && delta > 0 && !isDigit(s2[j])) 
+
+                    if (j < m && delta > 0 && !isDigit(s2[j]))
                         dp[i][j + 1].insert(delta - 1);
-                            
+
                     if (i < n && j < m && delta == 0 && s1[i] == s2[j])
                         dp[i + 1][j + 1].insert(0);
                 }
             }
         }
-        
+
         return dp[n][m].count(0);
     }
 };

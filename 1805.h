@@ -9,15 +9,12 @@ public:
         int l = 0;
         int r = 0;
 
-        while (r < word.size())
-        {
-            if (word[r] >= '0' && word[r] <= '9') ++r;
-            else
-            {
-                if (l < r)
-                {
-                    while (word[l] == '0')
-                    {
+        while (r < word.size()) {
+            if (word[r] >= '0' && word[r] <= '9')
+                ++r;
+            else {
+                if (l < r) {
+                    while (word[l] == '0') {
                         ++l;
                     }
                     us.insert(word.substr(l, r - l));
@@ -27,10 +24,8 @@ public:
             }
         }
 
-        if (l < r)
-        {
-            while (word[l] == '0')
-            {
+        if (l < r) {
+            while (word[l] == '0') {
                 ++l;
             }
             us.insert(word.substr(l, r - l + 1));

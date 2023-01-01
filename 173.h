@@ -1,7 +1,6 @@
 #include <stack>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,27 +10,27 @@ struct TreeNode
 };
 class BSTIterator {
 public:
-    BSTIterator(TreeNode* root) {
+    BSTIterator(TreeNode *root) {
         pushNext(root);
     }
-    
+
     int next() {
         auto node = s.top();
         s.pop();
         pushNext(node->right);
         return node->val;
     }
-    
+
     bool hasNext() {
         return !s.empty();
     }
 
 private:
-    std::stack<TreeNode*> s;
+    std::stack<TreeNode *> s;
 
-    void pushNext(TreeNode* node)
-    {
-        for (auto iter = node; iter != nullptr; iter = iter->left) s.push(iter);
+    void pushNext(TreeNode *node) {
+        for (auto iter = node; iter != nullptr; iter = iter->left)
+            s.push(iter);
     }
 };
 

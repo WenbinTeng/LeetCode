@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,7 +10,7 @@ struct TreeNode
 };
 class Solution {
 public:
-    int averageOfSubtree(TreeNode* root) {
+    int averageOfSubtree(TreeNode *root) {
         postorder(root);
         return res;
     }
@@ -19,9 +18,9 @@ public:
 private:
     int res = 0;
 
-    std::pair<int, int> postorder(TreeNode* node)
-    {
-        if (node == nullptr) return {0, 0};
+    std::pair<int, int> postorder(TreeNode *node) {
+        if (node == nullptr)
+            return {0, 0};
 
         auto [leftVal, leftNum] = postorder(node->left);
         auto [rightVal, rightNum] = postorder(node->right);
@@ -29,8 +28,7 @@ private:
         int totalVal = leftVal + rightVal + node->val;
         int totalNum = leftNum + rightNum + 1;
 
-        if (totalVal / totalNum == node->val)
-        {
+        if (totalVal / totalNum == node->val) {
             ++res;
         }
 

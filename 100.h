@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -10,17 +9,20 @@ struct TreeNode
 
 class Solution {
 public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
+    bool isSameTree(TreeNode *p, TreeNode *q) {
         return sameCheck(p, q);
     }
 
 private:
-    bool sameCheck(TreeNode* p, TreeNode* q)
-    {
-        if (p == nullptr && q == nullptr) return true;
-        else if (p == nullptr) return false;
-        else if (q == nullptr) return false;
-        else if (p->val != q->val) return false;
+    bool sameCheck(TreeNode *p, TreeNode *q) {
+        if (p == nullptr && q == nullptr)
+            return true;
+        else if (p == nullptr)
+            return false;
+        else if (q == nullptr)
+            return false;
+        else if (p->val != q->val)
+            return false;
 
         return sameCheck(p->left, q->left) && sameCheck(p->right, q->right);
     }

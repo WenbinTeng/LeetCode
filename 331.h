@@ -9,11 +9,14 @@ public:
 private:
     int index = 0;
 
-    bool dfs(std::string& s)
-    {
-        if (index >= s.size()) return false;
-        
-        if (s[index] == '#') {index += 2; return true;}
+    bool dfs(std::string &s) {
+        if (index >= s.size())
+            return false;
+
+        if (s[index] == '#') {
+            index += 2;
+            return true;
+        }
 
         index = s.find_first_of(',', index) + 1;
 

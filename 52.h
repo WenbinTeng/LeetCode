@@ -1,19 +1,22 @@
-#include <vector>
 #include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
     int totalNQueens(int n) {
-        res = 0;
-        
         int cnt = 0;
-        for (int i = 0; i < (n + 1) / 2; ++i)
-        {
-            if (i == n / 2) cnt = res;
+        res = 0;
 
-            if (col.find(i) != col.end()) continue;
-            if (posDiag.find(0 - i) != col.end()) continue;
-            if (negDiag.find(0 + i) != col.end()) continue;
+        for (int i = 0; i < (n + 1) / 2; ++i) {
+            if (i == n / 2)
+                cnt = res;
+
+            if (col.find(i) != col.end())
+                continue;
+            if (posDiag.find(0 - i) != col.end())
+                continue;
+            if (negDiag.find(0 + i) != col.end())
+                continue;
 
             coor.push_back(std::make_pair(0, i));
             col.insert(i);
@@ -38,18 +41,19 @@ private:
     std::unordered_set<int> posDiag;
     std::unordered_set<int> negDiag;
 
-    void backtrack(int n, int row)
-    {
-        if (row == n)
-        {
-            ++res; return;
+    void backtrack(int n, int row) {
+        if (row == n) {
+            ++res;
+            return;
         }
 
-        for (int i = 0; i < n; ++i)
-        {
-            if (col.find(i) != col.end()) continue;
-            if (posDiag.find(row - i) != col.end()) continue;
-            if (negDiag.find(row + i) != col.end()) continue;
+        for (int i = 0; i < n; ++i) {
+            if (col.find(i) != col.end())
+                continue;
+            if (posDiag.find(row - i) != col.end())
+                continue;
+            if (negDiag.find(row + i) != col.end())
+                continue;
 
             coor.push_back(std::make_pair(row, i));
             col.insert(i);

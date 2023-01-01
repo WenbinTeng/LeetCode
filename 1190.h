@@ -1,5 +1,5 @@
-#include <string>
 #include <algorithm>
+#include <string>
 
 class Solution {
 public:
@@ -9,24 +9,17 @@ public:
     }
 
 private:
-    std::string reverseSubStr(std::string& s, int& index)
-    {
+    std::string reverseSubStr(std::string &s, int &index) {
         std::string substr = "";
 
-        for (; index < s.size(); ++index)
-        {
-            if (s[index] == '(')
-            {
+        for (; index < s.size(); ++index) {
+            if (s[index] == '(') {
                 ++index;
                 substr += reverseSubStr(s, index);
-            }
-            else if (s[index] == ')')
-            {
+            } else if (s[index] == ')') {
                 std::reverse(substr.begin(), substr.end());
                 return substr;
-            }
-            else
-            {
+            } else {
                 substr.push_back(s[index]);
             }
         }

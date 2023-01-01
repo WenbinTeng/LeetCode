@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 
 class Solution {
 public:
-    void recoverTree(TreeNode* root) {
+    void recoverTree(TreeNode *root) {
         std::vector<int> rec;
 
         inorder(root, rec);
@@ -20,12 +19,10 @@ public:
         int swapValX = -1;
         int swapValY = -1;
 
-        for (int i = 1; i < rec.size(); ++i)
-        {
-            if (rec[i - 1] > rec[i])
-            {
+        for (int i = 1; i < rec.size(); ++i) {
+            if (rec[i - 1] > rec[i]) {
                 swapValX = swapValX == -1 ? rec[i - 1] : swapValX;
-                swapValY =                  rec[i    ];
+                swapValY = rec[i];
             }
         }
 
@@ -35,26 +32,28 @@ public:
     }
 
 private:
-    TreeNode* swapNodeX;
-    TreeNode* swapNodeY;
+    TreeNode *swapNodeX;
+    TreeNode *swapNodeY;
 
-    void inorder(TreeNode* node, std::vector<int>& rec)
-    {
-        if (node == nullptr) return;
+    void inorder(TreeNode *node, std::vector<int> &rec) {
+        if (node == nullptr)
+            return;
 
-        inorder(node->left,  rec);
+        inorder(node->left, rec);
         rec.push_back(node->val);
         inorder(node->right, rec);
     }
 
-    void recover(TreeNode* node, int x, int y)
-    {
-        if (node == nullptr) return;
+    void recover(TreeNode *node, int x, int y) {
+        if (node == nullptr)
+            return;
 
-        if (node->val == x) swapNodeX = node;
-        if (node->val == y) swapNodeY = node;
+        if (node->val == x)
+            swapNodeX = node;
+        if (node->val == y)
+            swapNodeY = node;
 
-        recover(node->left,  x, y);
+        recover(node->left, x, y);
         recover(node->right, x, y);
     }
 };

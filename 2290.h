@@ -1,9 +1,9 @@
-#include <vector>
 #include <deque>
+#include <vector>
 
 class Solution {
 public:
-    int minimumObstacles(std::vector<std::vector<int>>& grid) {
+    int minimumObstacles(std::vector<std::vector<int>> &grid) {
         const int inf = 0x3f3f3f3f;
         int m = grid.size();
         int n = grid[0].size();
@@ -14,35 +14,28 @@ public:
         dis[0][0] = 0;
         dq.push_back({0, 0});
 
-        while (!dq.empty())
-        {
+        while (!dq.empty()) {
             auto [x, y] = dq.front();
             dq.pop_front();
 
-            for (const auto& d : dir)
-            {
+            for (const auto &d : dir) {
                 int nx = x + d[0];
                 int ny = y + d[1];
 
-                if (nx >= 0 && nx < m && ny >= 0 && ny < n)
-                {
-                    if (dis[nx][ny] > dis[x][y] + grid[nx][ny])
-                    {
+                if (nx >= 0 && nx < m && ny >= 0 && ny < n) {
+                    if (dis[nx][ny] > dis[x][y] + grid[nx][ny]) {
                         dis[nx][ny] = dis[x][y] + grid[nx][ny];
-                        
-                        if (grid[nx][ny] == 0)
-                        {
+
+                        if (grid[nx][ny] == 0) {
                             dq.push_front({nx, ny});
-                        }
-                        else
-                        {
+                        } else {
                             dq.push_back({nx, ny});
                         }
                     }
                 }
             }
         }
-        
+
         return dis[m - 1][n - 1];
     }
 };

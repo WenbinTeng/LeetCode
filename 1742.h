@@ -8,13 +8,11 @@ public:
         int sum;
         int num;
 
-        for (int i = lowLimit; i <= highLimit; i++)
-        {
+        for (int i = lowLimit; i <= highLimit; i++) {
             sum = 0;
             num = i;
 
-            while (num)
-            {
+            while (num) {
                 sum = sum + num % 10;
                 num = num / 10;
             }
@@ -22,7 +20,8 @@ public:
             um[sum]++;
         }
 
-        for (const auto& iter : um) maxValue = std::max(maxValue, iter.second);
+        for (const auto &iter : um)
+            maxValue = std::max(maxValue, iter.second);
 
         return maxValue;
     }

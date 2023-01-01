@@ -1,5 +1,4 @@
-struct ListNode
-{
+struct ListNode {
     int val;
     ListNode *next;
     ListNode() : val(0), next(nullptr) {}
@@ -9,20 +8,19 @@ struct ListNode
 
 class Solution {
 public:
-    ListNode* mergeNodes(ListNode* head) {
-        ListNode* resHead = new ListNode;
-        ListNode* resTail = resHead;
-        ListNode* prevZero = head;
-        ListNode* nextZero = head->next;
+    ListNode *mergeNodes(ListNode *head) {
+        ListNode *resHead = new ListNode;
+        ListNode *resTail = resHead;
+        ListNode *prevZero = head;
+        ListNode *nextZero = head->next;
 
-        while (true)
-        {
-            if (nextZero == nullptr) break;
+        while (true) {
+            if (nextZero == nullptr)
+                break;
 
             int sum = 0;
 
-            while (nextZero->val != 0)
-            {
+            while (nextZero->val != 0) {
                 sum += nextZero->val;
                 nextZero = nextZero->next;
             }

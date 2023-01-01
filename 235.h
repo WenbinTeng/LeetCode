@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,26 +8,21 @@ struct TreeNode
 };
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
 
         return travel(root, std::min(p->val, q->val), std::max(p->val, q->val));
     }
 
 private:
-    TreeNode* travel(TreeNode* node, int i, int j)
-    {
-        if (node == nullptr) return nullptr;
+    TreeNode *travel(TreeNode *node, int i, int j) {
+        if (node == nullptr)
+            return nullptr;
 
-        if (i <= node->val && j >= node->val)
-        {
+        if (i <= node->val && j >= node->val) {
             return node;
-        }
-        else if (i <= node->val && j <= node->val)
-        {
-            return travel(node->left,  i, j);
-        }
-        else if (i >= node->val && j >= node->val)
-        {
+        } else if (i <= node->val && j <= node->val) {
+            return travel(node->left, i, j);
+        } else if (i >= node->val && j >= node->val) {
             return travel(node->right, i, j);
         }
 

@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,8 +10,9 @@ struct TreeNode
 };
 class Solution {
 public:
-    int longestUnivaluePath(TreeNode* root) {
-        if (root == nullptr) return 0;
+    int longestUnivaluePath(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
         dfs(root, root->val + 1);
         return res;
     }
@@ -20,11 +20,11 @@ public:
 private:
     int res = 0;
 
-    int dfs(TreeNode* node, int rootVal)
-    {
-        if (node == nullptr) return 0;
+    int dfs(TreeNode *node, int rootVal) {
+        if (node == nullptr)
+            return 0;
 
-        int leftDepth  = dfs(node->left,  node->val);
+        int leftDepth = dfs(node->left, node->val);
         int rightDepth = dfs(node->right, node->val);
 
         res = std::max(res, leftDepth + rightDepth);

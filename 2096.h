@@ -1,8 +1,7 @@
-#include <vector>
 #include <string>
+#include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,10 +11,11 @@ struct TreeNode
 };
 class Solution {
 public:
-    std::string getDirections(TreeNode* root, int startValue, int destValue) {
+    std::string getDirections(TreeNode *root, int startValue, int destValue) {
         dfs(root, startValue, destValue);
         int sameCnt = 0;
-        while (startPath[sameCnt] == destPath[sameCnt]) ++sameCnt;
+        while (startPath[sameCnt] == destPath[sameCnt])
+            ++sameCnt;
         return std::string(startPath.size() - sameCnt, 'U') + destPath.substr(sameCnt);
     }
 
@@ -24,19 +24,18 @@ private:
     std::string startPath;
     std::string destPath;
 
-    void dfs(TreeNode* node, int startValue, int destValue)
-    {
-        if (node->val == startValue) startPath = path;
-        if (node->val == destValue) destPath = path;
+    void dfs(TreeNode *node, int startValue, int destValue) {
+        if (node->val == startValue)
+            startPath = path;
+        if (node->val == destValue)
+            destPath = path;
 
-        if (node->left)
-        {
+        if (node->left) {
             path.push_back('L');
             dfs(node->left, startValue, destValue);
             path.pop_back();
         }
-        if (node->right)
-        {
+        if (node->right) {
             path.push_back('R');
             dfs(node->right, startValue, destValue);
             path.pop_back();

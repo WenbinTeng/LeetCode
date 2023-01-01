@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,13 +11,12 @@ struct TreeNode
 
 class Solution {
 public:
-    TreeNode* sortedArrayToBST(std::vector<int>& nums) {
+    TreeNode *sortedArrayToBST(std::vector<int> &nums) {
         return nums.empty() ? nullptr : build(nums, 0, nums.size() - 1);
     }
 
 private:
-    TreeNode* build(std::vector<int>& nums, int begin, int end)
-    {
+    TreeNode *build(std::vector<int> &nums, int begin, int end) {
         return begin > end ? nullptr : new TreeNode(nums[(begin + end) / 2], build(nums, begin, (begin + end) / 2 - 1), build(nums, (begin + end) / 2 + 1, end));
     }
 };

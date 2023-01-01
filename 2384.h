@@ -1,6 +1,6 @@
-#include <vector>
-#include <string>
 #include <algorithm>
+#include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -9,26 +9,22 @@ public:
         std::string rev;
         std::vector<int> cnt(10);
 
-        for (const auto digit : num)
-        {
+        for (const auto digit : num) {
             ++cnt[digit - '0'];
         }
-        
-        for (int i = 9; i >= 0; --i)
-        {
-            if (i == 0 && rev.empty()) continue;
 
-            while (cnt[i] >= 2)
-            {
+        for (int i = 9; i >= 0; --i) {
+            if (i == 0 && rev.empty())
+                continue;
+
+            while (cnt[i] >= 2) {
                 rev.push_back(i + '0');
                 cnt[i] -= 2;
             }
         }
 
-        for (int i = 9; i >= 0; --i)
-        {
-            if (cnt[i])
-            {
+        for (int i = 9; i >= 0; --i) {
+            if (cnt[i]) {
                 res = rev;
                 std::reverse(rev.begin(), rev.end());
                 return res + std::to_string(i) + rev;

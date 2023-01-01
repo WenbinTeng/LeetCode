@@ -1,30 +1,25 @@
-#include <vector>
 #include <queue>
 #include <unordered_set>
+#include <vector>
 
 class SmallestInfiniteSet {
 public:
     SmallestInfiniteSet() {
-
     }
-    
+
     int popSmallest() {
-        if (prev.empty())
-        {
+        if (prev.empty()) {
             return curr++;
-        }
-        else
-        {
+        } else {
             int ret = prev.top();
             prev.pop();
             prevSet.erase(ret);
             return ret;
         }
     }
-    
+
     void addBack(int num) {
-        if (num < curr && !prevSet.count(num))
-        {
+        if (num < curr && !prevSet.count(num)) {
             prev.push(num);
             prevSet.insert(num);
         }

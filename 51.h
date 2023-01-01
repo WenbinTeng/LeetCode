@@ -1,7 +1,7 @@
-#include <vector>
+#include <algorithm>
 #include <string>
 #include <unordered_set>
-#include <algorithm>
+#include <vector>
 
 class Solution {
 public:
@@ -9,13 +9,16 @@ public:
         std::vector<std::vector<std::string>> res;
 
         int cnt = 0;
-        for (int i = 0; i < (n + 1) / 2; ++i)
-        {
-            if (i == n / 2) cnt = res.size();
+        for (int i = 0; i < (n + 1) / 2; ++i) {
+            if (i == n / 2)
+                cnt = res.size();
 
-            if (col.find(i) != col.end()) continue;
-            if (posDiag.find(0 - i) != col.end()) continue;
-            if (negDiag.find(0 + i) != col.end()) continue;
+            if (col.find(i) != col.end())
+                continue;
+            if (posDiag.find(0 - i) != col.end())
+                continue;
+            if (negDiag.find(0 + i) != col.end())
+                continue;
 
             coor.push_back(std::make_pair(0, i));
             col.insert(i);
@@ -30,13 +33,12 @@ public:
             negDiag.erase(0 + i);
         }
 
-        if (n % 2 == 0) cnt = res.size();
+        if (n % 2 == 0)
+            cnt = res.size();
 
-        for (int i = 0; i < cnt; ++i)
-        {
+        for (int i = 0; i < cnt; ++i) {
             std::vector<std::string> board = res[i];
-            for (int j = 0; j < board.size(); ++j)
-            {
+            for (int j = 0; j < board.size(); ++j) {
                 std::reverse(board[j].begin(), board[j].end());
             }
             res.push_back(board);
@@ -51,20 +53,15 @@ private:
     std::unordered_set<int> posDiag;
     std::unordered_set<int> negDiag;
 
-    void backtrack(std::vector<std::vector<std::string>> &res, int n, int row)
-    {
-        if (row == n)
-        {
+    void backtrack(std::vector<std::vector<std::string>> &res, int n, int row) {
+        if (row == n) {
             std::vector<std::string> board(n);
-            for (int i = 0; i < n; ++i)
-            {
-                for (int j = 0; j < n; ++j)
-                {
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < n; ++j) {
                     board[i] += '.';
                 }
             }
-            for (const auto &[row, col] : coor)
-            {
+            for (const auto &[row, col] : coor) {
                 board[row][col] = 'Q';
             }
 
@@ -72,11 +69,13 @@ private:
             return;
         }
 
-        for (int i = 0; i < n; ++i)
-        {
-            if (col.find(i) != col.end()) continue;
-            if (posDiag.find(row - i) != col.end()) continue;
-            if (negDiag.find(row + i) != col.end()) continue;
+        for (int i = 0; i < n; ++i) {
+            if (col.find(i) != col.end())
+                continue;
+            if (posDiag.find(row - i) != col.end())
+                continue;
+            if (negDiag.find(row + i) != col.end())
+                continue;
 
             coor.push_back(std::make_pair(row, i));
             col.insert(i);

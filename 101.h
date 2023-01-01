@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -10,17 +9,20 @@ struct TreeNode
 
 class Solution {
 public:
-    bool isSymmetric(TreeNode* root) {
+    bool isSymmetric(TreeNode *root) {
         return root == nullptr ? true : symmetricCheck(root->left, root->right);
     }
 
 private:
-    bool symmetricCheck(TreeNode* p, TreeNode* q)
-    {
-        if (p == nullptr && q == nullptr) return true;
-        else if (p == nullptr) return false;
-        else if (q == nullptr) return false;
-        else if (p->val != q->val) return false;
+    bool symmetricCheck(TreeNode *p, TreeNode *q) {
+        if (p == nullptr && q == nullptr)
+            return true;
+        else if (p == nullptr)
+            return false;
+        else if (q == nullptr)
+            return false;
+        else if (p->val != q->val)
+            return false;
 
         return symmetricCheck(p->left, q->right) && symmetricCheck(p->right, q->left);
     }

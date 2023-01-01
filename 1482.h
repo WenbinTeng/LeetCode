@@ -1,24 +1,21 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int minDays(std::vector<int>& bloomDay, int m, int k) {
-        if (m * k > bloomDay.size()) return -1;
+    int minDays(std::vector<int> &bloomDay, int m, int k) {
+        if (m * k > bloomDay.size())
+            return -1;
 
         int l = 0;
         int r = *std::max_element(bloomDay.begin(), bloomDay.end());
 
-        while (l < r)
-        {
+        while (l < r) {
             int mid = (l + r) / 2;
 
-            if (check(bloomDay, mid, m, k))
-            {
+            if (check(bloomDay, mid, m, k)) {
                 r = mid;
-            }
-            else
-            {
+            } else {
                 l = mid + 1;
             }
         }
@@ -27,23 +24,18 @@ public:
     }
 
 private:
-    bool check(std::vector<int>& bloomDay, int days, int m, int k)
-    {
+    bool check(std::vector<int> &bloomDay, int days, int m, int k) {
         int tm = 0;
         int tk = 0;
-        
-        for (const auto& day : bloomDay)
-        {
-            if (day <= days)
-            {
-                if (++tk == k)
-                {
-                    if (++tm == m) return true;
+
+        for (const auto &day : bloomDay) {
+            if (day <= days) {
+                if (++tk == k) {
+                    if (++tm == m)
+                        return true;
                     tk = 0;
                 }
-            }
-            else
-            {
+            } else {
                 tk = 0;
             }
         }

@@ -1,8 +1,7 @@
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 };
 class Solution {
 public:
-    int rob(TreeNode* root) {
+    int rob(TreeNode *root) {
         dfs(root);
         return std::max(f[root], g[root]);
     }
@@ -20,10 +19,10 @@ public:
 private:
     std::unordered_map<TreeNode *, int> f, g;
 
-    void dfs(TreeNode *node)
-    {
-        if (node == nullptr) return;
-        dfs(node->left );
+    void dfs(TreeNode *node) {
+        if (node == nullptr)
+            return;
+        dfs(node->left);
         dfs(node->right);
 
         f[node] = node->val + g[node->left] + g[node->right];

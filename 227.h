@@ -1,5 +1,5 @@
-#include <string>
 #include <stack>
+#include <string>
 
 class Solution {
 public:
@@ -8,7 +8,7 @@ public:
         std::stack<char> sign;
         std::string n;
 
-        nums.push( 0 );
+        nums.push(0);
         sign.push('+');
 
         auto calTop = [&]() {
@@ -18,53 +18,45 @@ public:
             nums.pop();
 
             nums.push(
-                sign.top() == '+' ? a + b :
-                sign.top() == '-' ? a - b :
-                sign.top() == '*' ? a * b :
-                sign.top() == '/' ? a / b :
-                0
-            );
+                sign.top() == '+' ? a + b : sign.top() == '-' ? a - b
+                                        : sign.top() == '*'   ? a * b
+                                        : sign.top() == '/'   ? a / b
+                                                              : 0);
             sign.pop();
         };
 
-        for (const auto& c : s)
-        {
-            if (c == ' ')
-            {
+        for (const auto &c : s) {
+            if (c == ' ') {
                 continue;
             }
-            if (c == '+' || c == '-' || c == '*' || c == '/')
-            {
+            if (c == '+' || c == '-' || c == '*' || c == '/') {
                 nums.push(n.empty() ? 0 : std::stoi(n));
                 n = "";
-                if (sign.top() == '*' || sign.top() == '/') calTop();
+                if (sign.top() == '*' || sign.top() == '/')
+                    calTop();
                 sign.push(c);
                 continue;
             }
-            if (c >= '0' && c <= '9')
-            {
+            if (c >= '0' && c <= '9') {
                 n.push_back(c);
             }
         }
 
-        if (!n.empty())
-        {
+        if (!n.empty()) {
             nums.push(std::stoi(n));
 
-            if (sign.top() == '*' || sign.top() == '/')
-            {
+            if (sign.top() == '*' || sign.top() == '/') {
                 calTop();
             }
         }
 
         int sum = 0;
-        while (!sign.empty())
-        {
+        while (!sign.empty()) {
             sum += sign.top() == '-' ? -nums.top() : nums.top();
             nums.pop();
             sign.pop();
         }
-        
+
         return sum + nums.top();
     }
 };

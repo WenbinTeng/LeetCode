@@ -1,7 +1,7 @@
-#include <vector>
-#include <string>
-#include <queue>
 #include <algorithm>
+#include <queue>
+#include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -11,17 +11,17 @@ public:
 
         dp[0] = true;
 
-        for (int i = 0; i < s.size(); ++i)
-        {
-            if (!dp[i]) continue;
+        for (int i = 0; i < s.size(); ++i) {
+            if (!dp[i])
+                continue;
 
-            for (int j = std::max(vis - i, minJump); j <= maxJump; ++j)
-            {
-                if (i + j >= s.size()) break;
+            for (int j = std::max(vis - i, minJump); j <= maxJump; ++j) {
+                if (i + j >= s.size())
+                    break;
 
                 dp[i + j] = s[i + j] == '0';
             }
-            
+
             vis = std::max(vis, i + maxJump);
         }
 

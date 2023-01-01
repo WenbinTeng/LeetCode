@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    int maximalPathQuality(std::vector<int>& values, std::vector<std::vector<int>>& edges, int maxTime) {
+    int maximalPathQuality(std::vector<int> &values, std::vector<std::vector<int>> &edges, int maxTime) {
         this->maxTime = maxTime;
         this->currTime = 0;
         this->maxValue = 0;
@@ -29,16 +29,16 @@ private:
     std::vector<std::vector<std::pair<int, int>>> adj;
 
     void dfs(int u) {
-        if (!vis[u]) currValue += values[u];
+        if (!vis[u])
+            currValue += values[u];
 
         ++vis[u];
 
-        if (u == 0) maxValue = std::max(maxValue, currValue);
+        if (u == 0)
+            maxValue = std::max(maxValue, currValue);
 
-        for (auto [v, time] : adj[u])
-        {
-            if (currTime + time <= maxTime)
-            {
+        for (auto [v, time] : adj[u]) {
+            if (currTime + time <= maxTime) {
                 currTime += time;
                 dfs(v);
                 currTime -= time;
@@ -47,6 +47,7 @@ private:
 
         --vis[u];
 
-        if (!vis[u]) currValue -= values[u];
+        if (!vis[u])
+            currValue -= values[u];
     }
 };

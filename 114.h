@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,25 +11,22 @@ struct TreeNode
 
 class Solution {
 public:
-    void flatten(TreeNode* root) {
-        std::vector<TreeNode*> rec;
+    void flatten(TreeNode *root) {
+        std::vector<TreeNode *> rec;
 
         preorder(root, rec);
 
-        for (int i = 1; i < rec.size(); ++i)
-        {
-            rec[i - 1]->left  = nullptr;
+        for (int i = 1; i < rec.size(); ++i) {
+            rec[i - 1]->left = nullptr;
             rec[i - 1]->right = rec[i];
         }
     }
 
 private:
-    void preorder(TreeNode* node, std::vector<TreeNode*>& rec)
-    {
-        if (node != nullptr)
-        {
+    void preorder(TreeNode *node, std::vector<TreeNode *> &rec) {
+        if (node != nullptr) {
             rec.push_back(node);
-            preorder(node->left,  rec);
+            preorder(node->left, rec);
             preorder(node->right, rec);
         }
     }

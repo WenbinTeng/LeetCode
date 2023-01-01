@@ -1,8 +1,7 @@
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -13,31 +12,25 @@ struct TreeNode
 
 class Solution {
 public:
-    TreeNode* createBinaryTree(std::vector<std::vector<int>>& descriptions) {
-        std::unordered_map<int, TreeNode*> umt;
+    TreeNode *createBinaryTree(std::vector<std::vector<int>> &descriptions) {
+        std::unordered_map<int, TreeNode *> umt;
         std::unordered_map<int, int> ump;
 
-        for (const auto& description : descriptions)
-        {
+        for (const auto &description : descriptions) {
             int p = description[0];
             int c = description[1];
             int l = description[2];
 
-            if (!umt.count(c))
-            {
+            if (!umt.count(c)) {
                 umt[c] = new TreeNode(c);
             }
-            if (!umt.count(p))
-            {
+            if (!umt.count(p)) {
                 umt[p] = new TreeNode(p);
             }
 
-            if (l)
-            {
+            if (l) {
                 umt[p]->left = umt[c];
-            }
-            else
-            {
+            } else {
                 umt[p]->right = umt[c];
             }
 
@@ -46,8 +39,7 @@ public:
 
         int root = descriptions[0][0];
 
-        while (ump.count(root))
-        {
+        while (ump.count(root)) {
             root = ump[root];
         }
 

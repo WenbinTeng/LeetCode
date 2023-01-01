@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -10,10 +10,8 @@ public:
         char col2 = s[3];
         char row2 = s[4];
 
-        for (char i = col1; i <= col2; ++i)
-        {
-            for (char j = row1; j <= row2; ++j)
-            {
+        for (char i = col1; i <= col2; ++i) {
+            for (char j = row1; j <= row2; ++j) {
                 std::string t = "";
                 t.push_back(i);
                 t.push_back(j);

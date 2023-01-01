@@ -5,10 +5,8 @@ public:
     long long countVowels(std::string word) {
         long long res = 0;
 
-        for (int i = 0; i < word.size(); ++i)
-        {
-            switch (word[i])
-            {
+        for (int i = 0; i < word.size(); ++i) {
+            switch (word[i]) {
             case 'a':
             case 'e':
             case 'i':

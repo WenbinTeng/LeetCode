@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,26 +11,23 @@ struct TreeNode
 
 class Solution {
 public:
-    std::vector<TreeNode*> generateTrees(int n) {
+    std::vector<TreeNode *> generateTrees(int n) {
         return dfs(1, n);
     }
 
 private:
-    std::vector<TreeNode*> dfs(int begin, int end)
-    {
-        if (begin > end) return {nullptr};
+    std::vector<TreeNode *> dfs(int begin, int end) {
+        if (begin > end)
+            return {nullptr};
 
-        std::vector<TreeNode*> res;
+        std::vector<TreeNode *> res;
 
-        for (int i = begin; i <= end; i++)
-        {
-            std::vector<TreeNode*> leftTrees  = dfs(begin, i - 1);
-            std::vector<TreeNode*> rightTrees = dfs(i + 1,   end);
+        for (int i = begin; i <= end; i++) {
+            std::vector<TreeNode *> leftTrees = dfs(begin, i - 1);
+            std::vector<TreeNode *> rightTrees = dfs(i + 1, end);
 
-            for (auto& left : leftTrees)
-            {
-                for (auto& right : rightTrees)
-                {
+            for (auto &left : leftTrees) {
+                for (auto &right : rightTrees) {
                     res.push_back(new TreeNode(i, left, right));
                 }
             }

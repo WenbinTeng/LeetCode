@@ -1,9 +1,8 @@
-#include <vector>
 #include <queue>
 #include <unordered_map>
+#include <vector>
 
-class Employee
-{
+class Employee {
 public:
     int id;
     int importance;
@@ -12,24 +11,21 @@ public:
 
 class Solution {
 public:
-    int getImportance(std::vector<Employee*> employees, int id) {
+    int getImportance(std::vector<Employee *> employees, int id) {
         int res = 0;
-        std::unordered_map<int, Employee*> um;
+        std::unordered_map<int, Employee *> um;
         std::queue<int> q;
 
-        for (const auto& employee : employees)
-        {
+        for (const auto &employee : employees) {
             um.insert({employee->id, employee});
         }
 
         q.push(id);
 
-        while (!q.empty())
-        {
+        while (!q.empty()) {
             int currId = q.front();
-            
-            for (const auto& subordinate : um[currId]->subordinates)
-            {
+
+            for (const auto &subordinate : um[currId]->subordinates) {
                 q.push(subordinate);
             }
             q.pop();

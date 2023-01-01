@@ -1,15 +1,15 @@
-#include <vector>
 #include <set>
+#include <vector>
 
 class KthLargest {
 public:
-    KthLargest(int k, std::vector<int>& nums) : k(k), s(std::multiset<int, std::less<int>>(nums.begin(), nums.end())) {
-        
+    KthLargest(int k, std::vector<int> &nums) : k(k), s(std::multiset<int, std::less<int>>(nums.begin(), nums.end())) {
     }
-    
+
     int add(int val) {
         s.insert(val);
-        while (s.size() > k) s.erase(s.begin());
+        while (s.size() > k)
+            s.erase(s.begin());
         return *s.begin();
     }
 

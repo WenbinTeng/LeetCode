@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Bitset {
 public:
@@ -7,73 +7,63 @@ public:
         this->size = size;
         this->ones = 0;
 
-        if (size % 32 == 0)
-        {
+        if (size % 32 == 0) {
             bits = std::vector<int>(size / 32);
-        }
-        else
-        {
+        } else {
             bits = std::vector<int>(size / 32 + 1);
         }
     }
-    
+
     void fix(int idx) {
         int loc = idx / 32;
         int off = idx % 32;
 
-        if (bits[loc] & (1 << off) ^ (1 << off))
-        {
+        if (bits[loc] & (1 << off) ^ (1 << off)) {
             ++ones;
             bits[loc] |= (1 << off);
         }
     }
-    
+
     void unfix(int idx) {
         int loc = idx / 32;
         int off = idx % 32;
 
-        if (bits[loc] & (1 << off))
-        {
+        if (bits[loc] & (1 << off)) {
             --ones;
             bits[loc] ^= (1 << off);
         }
     }
-    
+
     void flip() {
         ones = size - ones;
-        
-        for (auto& num : bits)
-        {
+
+        for (auto &num : bits) {
             num = ~num;
         }
     }
-    
+
     bool all() {
         return ones == size;
     }
-    
+
     bool one() {
         return ones > 0;
     }
-    
+
     int count() {
         return ones;
     }
-    
+
     std::string toString() {
         std::string res;
 
-        for (int i = 0; i < size; ++i)
-        {
+        for (int i = 0; i < size; ++i) {
             int loc = i / 32;
             int off = i % 32;
 
-            if (bits[loc] & (1 << off))
-            {
+            if (bits[loc] & (1 << off)) {
                 res.push_back('1');
-            }
-            else
-            {
+            } else {
                 res.push_back('0');
             }
         }

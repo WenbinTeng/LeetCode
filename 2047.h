@@ -10,29 +10,27 @@ public:
 
         sentence = " " + sentence + " ";
 
-        for (int i = 0; i < sentence.size(); ++i)
-        {
-            if (sentence[i] >= '0' && sentence[i] <= '9')
-            {
+        for (int i = 0; i < sentence.size(); ++i) {
+            if (sentence[i] >= '0' && sentence[i] <= '9') {
                 isWord = false;
-            }
-            else if (sentence[i] == '-')
-            {
-                if (sentence[i - 1] < 'a' || sentence[i - 1] > 'z' || sentence[i + 1] < 'a' || sentence[i + 1] > 'z') isWord = false;
-                if (hasDash) isWord = false;
+            } else if (sentence[i] == '-') {
+                if (sentence[i - 1] < 'a' || sentence[i - 1] > 'z' || sentence[i + 1] < 'a' || sentence[i + 1] > 'z')
+                    isWord = false;
+                if (hasDash)
+                    isWord = false;
                 hasDash = true;
-            }
-            else if (sentence[i] == '!' || sentence[i] == '.' || sentence[i] == ',')
-            {
-                if (sentence[i + 1] != ' ') isWord = false;
-                if (hasSign) isWord = false;
+            } else if (sentence[i] == '!' || sentence[i] == '.' || sentence[i] == ',') {
+                if (sentence[i + 1] != ' ')
+                    isWord = false;
+                if (hasSign)
+                    isWord = false;
                 hasSign = true;
-            }
-            else if (sentence[i] == ' ')
-            {
-                while (i + 1 < sentence.size() && sentence[i + 1] == ' ') ++i;
+            } else if (sentence[i] == ' ') {
+                while (i + 1 < sentence.size() && sentence[i + 1] == ' ')
+                    ++i;
 
-                if (isWord) ++res;
+                if (isWord)
+                    ++res;
 
                 isWord = true;
                 hasSign = false;

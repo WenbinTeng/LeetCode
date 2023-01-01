@@ -1,7 +1,6 @@
 #include <vector>
 
-struct ListNode
-{
+struct ListNode {
     int val;
     ListNode *next;
     ListNode() : val(0), next(nullptr) {}
@@ -9,8 +8,7 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -21,22 +19,27 @@ struct TreeNode
 
 class Solution {
 public:
-    TreeNode* sortedListToBST(ListNode* head) {
+    TreeNode *sortedListToBST(ListNode *head) {
         return head == nullptr ? nullptr : build(head, nullptr);
     }
 
 private:
-    TreeNode* build(ListNode* head, ListNode* tail)
-    {
-        if (head == tail) return nullptr;
+    TreeNode *build(ListNode *head, ListNode *tail) {
+        if (head == tail)
+            return nullptr;
 
-        ListNode* slow = head;
-        ListNode* fast = head;
+        ListNode *slow = head;
+        ListNode *fast = head;
 
-        while (fast != tail)
-        {
-            if (fast != tail) fast = fast->next; else break;
-            if (fast != tail) fast = fast->next; else break;
+        while (fast != tail) {
+            if (fast != tail)
+                fast = fast->next;
+            else
+                break;
+            if (fast != tail)
+                fast = fast->next;
+            else
+                break;
             slow = slow->next;
         }
 

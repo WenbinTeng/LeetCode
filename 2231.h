@@ -1,5 +1,5 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
@@ -9,18 +9,14 @@ public:
         std::vector<int> odd;
         std::vector<int> even;
 
-        while (num)
-        {
+        while (num) {
             int digit = num % 10;
 
             digits.push_back(digit);
 
-            if (digit & 1)
-            {
+            if (digit & 1) {
                 even.push_back(digit);
-            }
-            else
-            {
+            } else {
                 odd.push_back(digit);
             }
 
@@ -29,23 +25,18 @@ public:
 
         std::sort(odd.begin(), odd.end(), std::greater<int>());
         std::sort(even.begin(), even.end(), std::greater<int>());
-        
-        for (int i = 0; i < digits.size(); ++i)
-        {
-            if (digits[i] & 1)
-            {
+
+        for (int i = 0; i < digits.size(); ++i) {
+            if (digits[i] & 1) {
                 digits[i] = even.back();
                 even.pop_back();
-            }
-            else
-            {
+            } else {
                 digits[i] = odd.back();
                 odd.pop_back();
             }
         }
-        
-        while (!digits.empty())
-        {
+
+        while (!digits.empty()) {
             res = res * 10 + digits.back();
             digits.pop_back();
         }

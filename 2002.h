@@ -12,12 +12,9 @@ private:
     std::string s1;
     std::string s2;
 
-    void dfs(std::string s, int index)
-    {
-        if (index == s.size())
-        {
-            if (checkShrink(s1, 0, s1.size() - 1) && checkShrink(s2, 0, s2.size() - 1))
-            {
+    void dfs(std::string s, int index) {
+        if (index == s.size()) {
+            if (checkShrink(s1, 0, s1.size() - 1) && checkShrink(s2, 0, s2.size() - 1)) {
                 res = std::max(res, (int)s1.size() * (int)s2.size());
             }
             return;
@@ -34,13 +31,12 @@ private:
         dfs(s, index + 1);
     }
 
-    bool checkShrink(std::string& s, int i, int j)
-    {
-        while (i <= j)
-        {
-            if (s[i++] != s[j--]) return false;
+    bool checkShrink(std::string &s, int i, int j) {
+        while (i <= j) {
+            if (s[i++] != s[j--])
+                return false;
         }
-        
+
         return true;
     }
 };

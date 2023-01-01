@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 
 class Solution {
 public:
-    int maxPathSum(TreeNode* root) {
+    int maxPathSum(TreeNode *root) {
         searchPath(root);
         return maxVal;
     }
@@ -20,11 +19,11 @@ public:
 private:
     int maxVal = -INT_MAX - 1;
 
-    int searchPath(TreeNode* node)
-    {
-        if (node == nullptr) return 0;
+    int searchPath(TreeNode *node) {
+        if (node == nullptr)
+            return 0;
 
-        int left  = std::max(0, searchPath(node->left ));
+        int left = std::max(0, searchPath(node->left));
         int right = std::max(0, searchPath(node->right));
 
         maxVal = std::max(maxVal, node->val + left + right);

@@ -1,8 +1,7 @@
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -13,7 +12,7 @@ struct TreeNode
 
 class Solution {
 public:
-    int amountOfTime(TreeNode* root, int start) {
+    int amountOfTime(TreeNode *root, int start) {
         preorder(root, start);
         getMaxLen(startPtr, 0, -1, false);
         father[root->val] = nullptr;
@@ -22,50 +21,43 @@ public:
 
 private:
     int res = 0;
-    TreeNode* startPtr;
-    std::unordered_map<int, TreeNode*> father;
+    TreeNode *startPtr;
+    std::unordered_map<int, TreeNode *> father;
 
-    void preorder(TreeNode* node, int start)
-    {
-        if (node == nullptr) return;
+    void preorder(TreeNode *node, int start) {
+        if (node == nullptr)
+            return;
 
-        if (node->val == start) startPtr = node;
-        
-        if (node->left != nullptr)
-        {
+        if (node->val == start)
+            startPtr = node;
+
+        if (node->left != nullptr) {
             father[node->left->val] = node;
             preorder(node->left, start);
         }
-        if (node->right != nullptr)
-        {
+        if (node->right != nullptr) {
             father[node->right->val] = node;
             preorder(node->right, start);
         }
     }
 
-    void getMaxLen(TreeNode* node, int cnt, int prev, bool isChild)
-    {
-        if (node == nullptr) return;
+    void getMaxLen(TreeNode *node, int cnt, int prev, bool isChild) {
+        if (node == nullptr)
+            return;
 
         res = std::max(res, cnt);
 
-        if (isChild)
-        {
+        if (isChild) {
             getMaxLen(node->left, cnt + 1, node->val, true);
             getMaxLen(node->right, cnt + 1, node->val, true);
-        }
-        else
-        {
-            if (node->left != nullptr && node->left->val != prev)
-            {
+        } else {
+            if (node->left != nullptr && node->left->val != prev) {
                 getMaxLen(node->left, cnt + 1, node->val, true);
             }
-            if (node->right != nullptr && node->right->val != prev)
-            {
+            if (node->right != nullptr && node->right->val != prev) {
                 getMaxLen(node->right, cnt + 1, node->val, true);
             }
-            if (father[node->val] != nullptr)
-            {
+            if (father[node->val] != nullptr) {
                 getMaxLen(father[node->val], cnt + 1, node->val, false);
             }
         }

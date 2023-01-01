@@ -1,5 +1,4 @@
-struct ListNode
-{
+struct ListNode {
     int val;
     ListNode *next;
     ListNode() : val(0), next(nullptr) {}
@@ -9,30 +8,28 @@ struct ListNode
 
 class Solution {
 public:
-    ListNode* partition(ListNode* head, int x) {
-        if (head == nullptr) return nullptr;
+    ListNode *partition(ListNode *head, int x) {
+        if (head == nullptr)
+            return nullptr;
 
-        ListNode* headPtr = new ListNode(0, head);
-        ListNode* tailPtr = headPtr;
-        ListNode* prevPtr;
-        ListNode* nextptr;
+        ListNode *headPtr = new ListNode(0, head);
+        ListNode *tailPtr = headPtr;
+        ListNode *prevPtr;
+        ListNode *nextptr;
 
-        while (tailPtr->next != nullptr && tailPtr->next->val < x) tailPtr = tailPtr->next;
-        
+        while (tailPtr->next != nullptr && tailPtr->next->val < x)
+            tailPtr = tailPtr->next;
+
         nextptr = tailPtr->next;
 
-        while (nextptr != nullptr)
-        {
-            if (nextptr->val < x)
-            {
+        while (nextptr != nullptr) {
+            if (nextptr->val < x) {
                 prevPtr->next = nextptr->next;
                 nextptr->next = tailPtr->next;
                 tailPtr->next = nextptr;
                 tailPtr = nextptr;
                 nextptr = prevPtr->next;
-            }
-            else
-            {
+            } else {
                 prevPtr = nextptr;
                 nextptr = nextptr->next;
             }

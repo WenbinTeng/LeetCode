@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -7,11 +7,9 @@ public:
         int res = 0;
         std::vector<std::vector<bool>> pos(10, std::vector<bool>(3, false));
 
-        for (int i = 0; i < rings.size(); i += 2)
-        {
+        for (int i = 0; i < rings.size(); i += 2) {
             char color = rings[i];
-            switch (color)
-            {
+            switch (color) {
             case 'R':
                 pos[rings[i + 1] - '0'][0] = true;
                 break;
@@ -26,9 +24,9 @@ public:
             }
         }
 
-        for (int i = 0; i < pos.size(); ++i)
-        {
-            if (pos[i][0] && pos[i][1] && pos[i][2]) ++res;
+        for (int i = 0; i < pos.size(); ++i) {
+            if (pos[i][0] && pos[i][1] && pos[i][2])
+                ++res;
         }
 
         return res;

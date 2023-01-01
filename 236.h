@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,24 +8,25 @@ struct TreeNode
 };
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
         travel(root, p->val, q->val);
         return res;
     }
 
 private:
-    TreeNode* res;
+    TreeNode *res;
 
-    bool travel(TreeNode* node, int i, int j)
-    {
-        if (node == nullptr) return false;
+    bool travel(TreeNode *node, int i, int j) {
+        if (node == nullptr)
+            return false;
 
         bool exist = node->val == i || node->val == j;
 
-        bool leftExist  = travel(node->left,  i, j);
+        bool leftExist = travel(node->left, i, j);
         bool rightExist = travel(node->right, i, j);
 
-        if (leftExist && rightExist || leftExist && exist || rightExist && exist) res = node;
+        if (leftExist && rightExist || leftExist && exist || rightExist && exist)
+            res = node;
 
         return exist || leftExist || rightExist;
     }

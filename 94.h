@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,18 +11,18 @@ struct TreeNode
 
 class Solution {
 public:
-    std::vector<int> inorderTraversal(TreeNode* root) {
+    std::vector<int> inorderTraversal(TreeNode *root) {
         std::vector<int> res;
         inorder(root, res);
         return res;
     }
 
 private:
-    void inorder(TreeNode* node, std::vector<int>& res)
-    {
-        if (node == nullptr) return;
+    void inorder(TreeNode *node, std::vector<int> &res) {
+        if (node == nullptr)
+            return;
 
-        inorder(node->left,  res);
+        inorder(node->left, res);
         res.push_back(node->val);
         inorder(node->right, res);
     }

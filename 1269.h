@@ -8,15 +8,15 @@ public:
 
         dp[steps & 1][0] = 1;
 
-        for (int i = steps - 1; i >= 0; --i)
-        {
-            int curr =  i      & 1;
+        for (int i = steps - 1; i >= 0; --i) {
+            int curr = i & 1;
             int prev = (i + 1) & 1;
-            for (int j = 0; j <= std::min(i, e); ++j)
-            {
+            for (int j = 0; j <= std::min(i, e); ++j) {
                 dp[curr][j] = dp[prev][j];
-                if (j - 1 >= 0) dp[curr][j] = (dp[curr][j] + dp[prev][j - 1]) % (int)(1e+9+7);
-                if (j + 1 <= e) dp[curr][j] = (dp[curr][j] + dp[prev][j + 1]) % (int)(1e+9+7);
+                if (j - 1 >= 0)
+                    dp[curr][j] = (dp[curr][j] + dp[prev][j - 1]) % (int)(1e+9 + 7);
+                if (j + 1 <= e)
+                    dp[curr][j] = (dp[curr][j] + dp[prev][j + 1]) % (int)(1e+9 + 7);
             }
         }
 

@@ -1,12 +1,13 @@
-#include <vector>
 #include <numeric>
+#include <vector>
 
 class NumArray {
 public:
-    NumArray(std::vector<int>& nums) {
-        for (int i = 0; i < nums.size(); ++i) sums.push_back(i == 0 ? nums[0] : sums[i - 1] + nums[i]);
+    NumArray(std::vector<int> &nums) {
+        for (int i = 0; i < nums.size(); ++i)
+            sums.push_back(i == 0 ? nums[0] : sums[i - 1] + nums[i]);
     }
-    
+
     int sumRange(int i, int j) {
         return i == 0 ? sums[j] : sums[j] - sums[i - 1];
     }

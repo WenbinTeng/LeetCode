@@ -8,8 +8,7 @@ public:
         int odd_0 = 0;
         int odd_1 = 0;
 
-        for (int i = 0; i < s.size(); ++i)
-        {
+        for (int i = 0; i < s.size(); ++i) {
             i % 2 == 0 ? (s[i] == '0' ? ++even_0 : ++even_1) : (s[i] == '0' ? ++odd_0 : ++odd_1);
         }
 

@@ -7,11 +7,9 @@ public:
         int r = 0;
         int sumCost = 0;
 
-        while (r < s.size())
-        {
+        while (r < s.size()) {
             sumCost += std::abs(s[r] - t[r]);
-            if (sumCost > maxCost)
-            {
+            if (sumCost > maxCost) {
                 sumCost -= std::abs(s[l] - t[l]);
                 l++;
             }

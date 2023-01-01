@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -7,14 +7,11 @@ public:
         int res = 0;
         std::vector<int> dp(26, 0);
 
-        for (const auto c : s)
-        {
+        for (const auto c : s) {
             int len = 0;
 
-            for (int i = 0; i < 26; ++i)
-            {
-                if (std::abs(c - 'a' - i) <= k)
-                {
+            for (int i = 0; i < 26; ++i) {
+                if (std::abs(c - 'a' - i) <= k) {
                     len = std::max(len, dp[i] + 1);
                 }
             }
@@ -22,8 +19,7 @@ public:
             dp[c - 'a'] = len;
         }
 
-        for (int i = 0; i < 26; ++i)
-        {
+        for (int i = 0; i < 26; ++i) {
             res = std::max(res, dp[i]);
         }
 

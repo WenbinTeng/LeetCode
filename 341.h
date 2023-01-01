@@ -1,10 +1,9 @@
-#include <vector>
 #include <stack>
+#include <vector>
 
 // This is the interface that allows for creating nested lists.
 // You should not implement it, or speculate about its implementation
-class NestedInteger
-{
+class NestedInteger {
 public:
     // Return true if this NestedInteger holds a single integer, rather than a nested list.
     bool isInteger() const;
@@ -18,25 +17,19 @@ public:
     const std::vector<NestedInteger> &getList() const;
 };
 
-class NestedIterator
-{
+class NestedIterator {
 public:
-    NestedIterator(std::vector<NestedInteger> &nestedList)
-    {
+    NestedIterator(std::vector<NestedInteger> &nestedList) {
         s.push({nestedList.begin(), nestedList.end()});
     }
 
-    int next()
-    {
+    int next() {
         return (s.top().first++)->getInteger();
     }
 
-    bool hasNext()
-    {
-        while (!s.empty())
-        {
-            if (s.top().first == s.top().second)
-            {
+    bool hasNext() {
+        while (!s.empty()) {
+            if (s.top().first == s.top().second) {
                 s.pop();
                 continue;
             }

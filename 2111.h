@@ -1,17 +1,15 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int kIncreasing(std::vector<int>& arr, int k) {
+    int kIncreasing(std::vector<int> &arr, int k) {
         int res = 0;
 
-        for (int i = 0; i < k; ++i)
-        {
+        for (int i = 0; i < k; ++i) {
             std::vector<int> tmp;
 
-            for (int j = i; j < arr.size(); j += k)
-            {
+            for (int j = i; j < arr.size(); j += k) {
                 tmp.push_back(arr[j]);
             }
 
@@ -22,20 +20,15 @@ public:
     }
 
 private:
-    int increasing(std::vector<int>& a)
-    {
+    int increasing(std::vector<int> &a) {
         std::vector<int> LIS;
 
-        for (const auto e : a)
-        {
+        for (const auto e : a) {
             auto it = std::upper_bound(LIS.begin(), LIS.end(), e);
 
-            if (it == LIS.end())
-            {
+            if (it == LIS.end()) {
                 LIS.push_back(e);
-            }
-            else
-            {
+            } else {
                 *it = e;
             }
         }

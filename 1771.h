@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -10,20 +10,17 @@ public:
         std::vector<std::vector<int>> dp(n1 + n2, std::vector<int>(n1 + n2, 0));
         int res = word1.back() == word2.front() ? 2 : 0;
 
-        for (int i = 0; i < n1 + n2; ++i) dp[i][i] = 1;
-        
-        for (int i = 0; i < n1 + n2 - 1; ++i) dp[i][i + 1] = word[i] == word[i + 1] ? 2 : 1;
+        for (int i = 0; i < n1 + n2; ++i)
+            dp[i][i] = 1;
 
-        for (int k = 2; k < n1 + n2; ++k)
-        {
-            for (int i = 0, j = k; j < n1 + n2; ++i, ++j)
-            {
-                if (word[i] == word[j])
-                {
+        for (int i = 0; i < n1 + n2 - 1; ++i)
+            dp[i][i + 1] = word[i] == word[i + 1] ? 2 : 1;
+
+        for (int k = 2; k < n1 + n2; ++k) {
+            for (int i = 0, j = k; j < n1 + n2; ++i, ++j) {
+                if (word[i] == word[j]) {
                     dp[i][j] = dp[i + 1][j - 1] + 2;
-                }
-                else
-                {
+                } else {
                     dp[i][j] = std::max(dp[i + 1][j], dp[i][j - 1]);
                 }
 

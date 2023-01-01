@@ -1,7 +1,6 @@
 #include <queue>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,29 +10,38 @@ struct TreeNode
 };
 class Solution {
 public:
-    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        preorder1(root1); return preorder2(root2) && rec.empty();
+    bool leafSimilar(TreeNode *root1, TreeNode *root2) {
+        preorder1(root1);
+        return preorder2(root2) && rec.empty();
     }
 
 private:
     std::queue<int> rec;
 
-    void preorder1(TreeNode* node1)
-    {
-        if (node1 == nullptr) return;
+    void preorder1(TreeNode *node1) {
+        if (node1 == nullptr)
+            return;
 
         preorder1(node1->left);
-        if (node1->left == nullptr && node1->right == nullptr) rec.push(node1->val);
+        if (node1->left == nullptr && node1->right == nullptr)
+            rec.push(node1->val);
         preorder1(node1->right);
     }
 
-    bool preorder2(TreeNode* node2)
-    {
-        if (node2 == nullptr) return true;
+    bool preorder2(TreeNode *node2) {
+        if (node2 == nullptr)
+            return true;
 
-        if (!preorder2(node2->left)) return false;
-        if (node2->left == nullptr && node2->right == nullptr) { if (!rec.empty() && node2->val == rec.front()) rec.pop(); else return false; }
-        if (!preorder2(node2->right)) return false;
+        if (!preorder2(node2->left))
+            return false;
+        if (node2->left == nullptr && node2->right == nullptr) {
+            if (!rec.empty() && node2->val == rec.front())
+                rec.pop();
+            else
+                return false;
+        }
+        if (!preorder2(node2->right))
+            return false;
 
         return true;
     }

@@ -1,5 +1,4 @@
-struct ListNode
-{
+struct ListNode {
     int val;
     ListNode *next;
     ListNode() : val(0), next(nullptr) {}
@@ -9,22 +8,20 @@ struct ListNode
 
 class Solution {
 public:
-    ListNode* reverseEvenLengthGroups(ListNode* head) {
-        ListNode* prev = new ListNode(0, head);
-        ListNode* curr = head;
+    ListNode *reverseEvenLengthGroups(ListNode *head) {
+        ListNode *prev = new ListNode(0, head);
+        ListNode *curr = head;
 
-        for (int count = 1; curr; ++count)
-        {
-            if (count % 2 == 0)
-            {
-                ListNode* lp = curr;
-                ListNode* rp = curr;
+        for (int count = 1; curr; ++count) {
+            if (count % 2 == 0) {
+                ListNode *lp = curr;
+                ListNode *rp = curr;
                 int i;
 
-                for (i = 0; i < count - 1 && rp->next; ++i) rp = rp->next;
+                for (i = 0; i < count - 1 && rp->next; ++i)
+                    rp = rp->next;
 
-                if (i % 2 != 0)
-                {
+                if (i % 2 != 0) {
                     curr = rp->next;
                     rp->next = nullptr;
                     prev->next = nullptr;
@@ -35,26 +32,22 @@ public:
                     lp->next = curr;
                     prev = lp;
                 }
-            }
-            else
-            {
-                ListNode* prevTemp = prev;
-                ListNode* currTemp = curr;
+            } else {
+                ListNode *prevTemp = prev;
+                ListNode *currTemp = curr;
                 int i;
 
-                for (i = 1; i <= count && curr; ++i)
-                {
+                for (i = 1; i <= count && curr; ++i) {
                     prev = curr;
                     curr = curr->next;
 
-                    if (curr == nullptr)
-                    {
-                        if (i % 2 == 0)
-                        {
-                            ListNode* lp = currTemp;
-                            ListNode* rp = currTemp;
+                    if (curr == nullptr) {
+                        if (i % 2 == 0) {
+                            ListNode *lp = currTemp;
+                            ListNode *rp = currTemp;
 
-                            for (int i = 0; rp->next; ++i) rp = rp->next;
+                            for (int i = 0; rp->next; ++i)
+                                rp = rp->next;
 
                             rp->next = nullptr;
                             prevTemp->next = nullptr;
@@ -76,7 +69,8 @@ public:
 
 private:
     void reverseLinkedList(ListNode *head) {
-        if (head == nullptr) return;
+        if (head == nullptr)
+            return;
 
         ListNode *prev = nullptr;
         ListNode *curr = head;

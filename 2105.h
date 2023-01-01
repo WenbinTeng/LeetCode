@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    int minimumRefill(std::vector<int>& plants, int capacityA, int capacityB) {
+    int minimumRefill(std::vector<int> &plants, int capacityA, int capacityB) {
         int res = 0;
 
         int posA = 0;
@@ -10,15 +10,12 @@ public:
         int capA = capacityA;
         int capB = capacityB;
 
-        while (posA < posB)
-        {
-            if (capA < plants[posA])
-            {
+        while (posA < posB) {
+            if (capA < plants[posA]) {
                 capA = capacityA;
                 ++res;
             }
-            if (capB < plants[posB])
-            {
+            if (capB < plants[posB]) {
                 capB = capacityB;
                 ++res;
             }
@@ -30,9 +27,9 @@ public:
             --posB;
         }
 
-        if (posA == posB)
-        {
-            if (std::max(capA, capB) < plants[posA]) ++res;
+        if (posA == posB) {
+            if (std::max(capA, capB) < plants[posA])
+                ++res;
         }
 
         return res;

@@ -1,31 +1,26 @@
-#include <vector>
-#include <unordered_set>
-#include <unordered_map>
 #include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
-    std::vector<std::vector<int>> findWinners(std::vector<std::vector<int>>& matches) {
+    std::vector<std::vector<int>> findWinners(std::vector<std::vector<int>> &matches) {
         std::vector<int> ans0;
         std::vector<int> ans1;
         std::unordered_set<int> us;
         std::unordered_map<int, int> um;
 
-        for (const auto match : matches)
-        {
+        for (const auto match : matches) {
             us.insert(match[0]);
             us.insert(match[1]);
             ++um[match[1]];
         }
 
-        for (const auto player : us)
-        {
-            if (um[player] == 0)
-            {
+        for (const auto player : us) {
+            if (um[player] == 0) {
                 ans0.push_back(player);
-            }
-            else if (um[player] == 1)
-            {
+            } else if (um[player] == 1) {
                 ans1.push_back(player);
             }
         }

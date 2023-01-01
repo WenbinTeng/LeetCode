@@ -7,16 +7,18 @@ public:
     }
 
 private:
-    std::string generate(std::string s, int i, int n)
-    {
-        if (i == n) return s;
+    std::string generate(std::string s, int i, int n) {
+        if (i == n)
+            return s;
 
         std::string res = "";
         int index = 0;
-        while (index < s.size())
-        {
+        while (index < s.size()) {
             char digit = s[index], count = '0';
-            while (index < s.size() && digit == s[index]) {index++; count++;}
+            while (index < s.size() && digit == s[index]) {
+                index++;
+                count++;
+            }
             res += count;
             res += digit;
         }

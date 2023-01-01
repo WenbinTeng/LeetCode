@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,7 +8,7 @@ struct TreeNode
 };
 class Solution {
 public:
-    int rangeSumBST(TreeNode* root, int low, int high) {
+    int rangeSumBST(TreeNode *root, int low, int high) {
         inorder(root, low, high);
         return res;
     }
@@ -17,12 +16,13 @@ public:
 private:
     int res = 0;
 
-    void inorder(TreeNode* node, int low, int high)
-    {
-        if (node == nullptr) return;
+    void inorder(TreeNode *node, int low, int high) {
+        if (node == nullptr)
+            return;
 
         inorder(node->left, low, high);
-        if (node->val >= low && node->val <= high) res += node->val;
+        if (node->val >= low && node->val <= high)
+            res += node->val;
         inorder(node->right, low, high);
     }
 };

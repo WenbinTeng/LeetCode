@@ -1,9 +1,9 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    std::vector<std::vector<int>> subsetsWithDup(std::vector<int>& nums) {
+    std::vector<std::vector<int>> subsetsWithDup(std::vector<int> &nums) {
         std::vector<std::vector<int>> res;
         std::vector<int> path;
         std::vector<bool> used(nums.size(), false);
@@ -13,13 +13,12 @@ public:
     }
 
 private:
-    void dfs(std::vector<int>& nums, std::vector<std::vector<int>>& res, std::vector<int>& path, std::vector<bool>& used, int index)
-    {
+    void dfs(std::vector<int> &nums, std::vector<std::vector<int>> &res, std::vector<int> &path, std::vector<bool> &used, int index) {
         res.push_back(path);
 
-        for (int i = index; i < nums.size(); ++i)
-        {
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+        for (int i = index; i < nums.size(); ++i) {
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])
+                continue;
 
             used[i] = true;
             path.push_back(nums[i]);

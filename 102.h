@@ -1,8 +1,7 @@
-#include <vector>
 #include <queue>
+#include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -13,21 +12,19 @@ struct TreeNode
 
 class Solution {
 public:
-    std::vector<std::vector<int>> levelOrder(TreeNode* root) {
-        if (root == nullptr) return {};
+    std::vector<std::vector<int>> levelOrder(TreeNode *root) {
+        if (root == nullptr)
+            return {};
 
         std::vector<std::vector<int>> res;
-        std::queue<TreeNode*> q;
+        std::queue<TreeNode *> q;
         q.push(root);
 
-        while (!q.empty())
-        {
+        while (!q.empty()) {
             res.push_back({});
 
-            for (int i = q.size(); i > 0; --i)
-            {
-                if (q.front() != nullptr)
-                {
+            for (int i = q.size(); i > 0; --i) {
+                if (q.front() != nullptr) {
                     res.back().push_back(q.front()->val);
                     q.push(q.front()->left);
                     q.push(q.front()->right);
@@ -35,7 +32,8 @@ public:
                 q.pop();
             }
 
-            if (res.back().empty()) res.pop_back();
+            if (res.back().empty())
+                res.pop_back();
         }
 
         return res;

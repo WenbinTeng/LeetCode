@@ -1,5 +1,5 @@
-#include <string>
 #include <algorithm>
+#include <string>
 
 class Solution {
 public:
@@ -15,7 +15,8 @@ public:
             res.push_back((carry % 2) ? '1' : '0');
             carry /= 2;
         }
-        if (carry) res.push_back('1');
+        if (carry)
+            res.push_back('1');
 
         reverse(res.begin(), res.end());
 

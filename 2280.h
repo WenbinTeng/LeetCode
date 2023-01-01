@@ -1,10 +1,11 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int minimumLines(std::vector<std::vector<int>>& stockPrices) {
-        if (stockPrices.size() == 1) return 0;
+    int minimumLines(std::vector<std::vector<int>> &stockPrices) {
+        if (stockPrices.size() == 1)
+            return 0;
 
         std::sort(stockPrices.begin(), stockPrices.end());
 
@@ -12,14 +13,12 @@ public:
         int dx = stockPrices[1][0] - stockPrices[0][0];
         int dy = stockPrices[1][1] - stockPrices[0][1];
 
-        for (int i = 2; i < stockPrices.size(); ++i)
-        {
+        for (int i = 2; i < stockPrices.size(); ++i) {
 
             int _dx = stockPrices[i][0] - stockPrices[i - 1][0];
             int _dy = stockPrices[i][1] - stockPrices[i - 1][1];
 
-            if ((long long)dy * _dx != (long long)dx * _dy)
-            {
+            if ((long long)dy * _dx != (long long)dx * _dy) {
                 ++res;
             }
 

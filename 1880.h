@@ -3,9 +3,8 @@
 class Solution {
 public:
     bool isSumEqual(std::string firstWord, std::string secondWord, std::string targetWord) {
-        auto convert = [](std::string& s){
-            for (auto& c : s)
-            {
+        auto convert = [](std::string &s) {
+            for (auto &c : s) {
                 c = c - 'a' + '0';
             }
 

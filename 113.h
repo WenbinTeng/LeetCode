@@ -1,7 +1,6 @@
 #include <vector>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 
 class Solution {
 public:
-    std::vector<std::vector<int>> pathSum(TreeNode* root, int targetSum) {
+    std::vector<std::vector<int>> pathSum(TreeNode *root, int targetSum) {
         std::vector<std::vector<int>> res;
         std::vector<int> path;
 
@@ -22,12 +21,11 @@ public:
     }
 
 private:
-    void dfs(TreeNode* node, std::vector<std::vector<int>>& res, std::vector<int>& path, int sum, int targetSum)
-    {
-        if (node == nullptr) return;
-        
-        if (node->left == nullptr && node->right == nullptr && sum + node->val == targetSum)
-        {
+    void dfs(TreeNode *node, std::vector<std::vector<int>> &res, std::vector<int> &path, int sum, int targetSum) {
+        if (node == nullptr)
+            return;
+
+        if (node->left == nullptr && node->right == nullptr && sum + node->val == targetSum) {
             path.push_back(node->val);
             res.push_back(path);
             path.pop_back();
@@ -35,7 +33,7 @@ private:
         }
 
         path.push_back(node->val);
-        dfs(node->left,  res, path, sum + node->val, targetSum);
+        dfs(node->left, res, path, sum + node->val, targetSum);
         dfs(node->right, res, path, sum + node->val, targetSum);
         path.pop_back();
     }

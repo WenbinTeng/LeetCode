@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,8 +10,9 @@ struct TreeNode
 };
 class Solution {
 public:
-    int goodNodes(TreeNode* root) {
-        if (root == nullptr) return 0;
+    int goodNodes(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
         preorder(root, root->val);
         return res;
     }
@@ -20,12 +20,13 @@ public:
 private:
     int res = 0;
 
-    void preorder(TreeNode* node, int maxVal)
-    {
-        if (node == nullptr) return;
+    void preorder(TreeNode *node, int maxVal) {
+        if (node == nullptr)
+            return;
 
-        if (node->val >= maxVal) ++res;
-        preorder(node->left,  std::max(maxVal, node->val));
+        if (node->val >= maxVal)
+            ++res;
+        preorder(node->left, std::max(maxVal, node->val));
         preorder(node->right, std::max(maxVal, node->val));
     }
 };

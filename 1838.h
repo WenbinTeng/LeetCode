@@ -1,9 +1,9 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int maxFrequency(std::vector<int>& nums, int k) {
+    int maxFrequency(std::vector<int> &nums, int k) {
         int res = 0;
         int l = 0;
         int r = 0;
@@ -11,11 +11,9 @@ public:
 
         std::sort(nums.begin(), nums.end());
 
-        while (r < nums.size())
-        {
+        while (r < nums.size()) {
             sum += nums[r];
-            while (1LL * nums[r] * (r - l + 1) - sum > k)
-            {
+            while (1LL * nums[r] * (r - l + 1) - sum > k) {
                 sum -= nums[l];
                 ++l;
             }

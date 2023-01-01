@@ -12,15 +12,15 @@ public:
     }
 
 private:
-    void dfs(std::vector<std::vector<int>>& res, std::vector<int>& path, int n, int k, int index)
-    {
-        if (path.size() == k) {res.push_back(path); return;}
-
-        for (int i = index; i <= n - (k - path.size()) + 1; ++i)
-        {
+    void dfs(std::vector<std::vector<int>> &res, std::vector<int> &path, int n, int k, int index) {
+        if (path.size() == k) {
+            res.push_back(path);
+            return;
+        }
+        for (int i = index; i <= n - (k - path.size()) + 1; ++i) {
             path.push_back(i);
             dfs(res, path, n, k, i + 1);
             path.pop_back();
-        }        
+        }
     }
 };

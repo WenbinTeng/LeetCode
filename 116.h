@@ -1,7 +1,6 @@
 #include <queue>
 
-class Node
-{
+class Node {
 public:
     int val;
     Node *left;
@@ -18,23 +17,21 @@ public:
 
 class Solution {
 public:
-    Node* connect(Node* root) {
-        if (root == nullptr) return nullptr;
+    Node *connect(Node *root) {
+        if (root == nullptr)
+            return nullptr;
 
-        std::queue<Node*> q;
+        std::queue<Node *> q;
         q.push(root);
 
-        while (!q.empty())
-        {
-            for (int i = q.size(); i > 0; --i)
-            {
-                Node* temp = q.front();
+        while (!q.empty()) {
+            for (int i = q.size(); i > 0; --i) {
+                Node *temp = q.front();
                 q.pop();
-                
-                if (temp != nullptr)
-                {
+
+                if (temp != nullptr) {
                     temp->next = i == 1 ? nullptr : q.front();
-                    q.push(temp->left );
+                    q.push(temp->left);
                     q.push(temp->right);
                 }
             }

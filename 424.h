@@ -9,12 +9,10 @@ public:
         int l;
         int r;
 
-        for (l = 0, r = 0; r < s.size(); r++)
-        {
+        for (l = 0, r = 0; r < s.size(); r++) {
             mostCount = std::max(mostCount, ++charCount[s[r] - 'A']);
 
-            if (r - l + 1 - mostCount > k)
-            {
+            if (r - l + 1 - mostCount > k) {
                 charCount[s[l++] - 'A']--;
             }
         }

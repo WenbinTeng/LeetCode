@@ -7,15 +7,12 @@ public:
         std::string res;
         std::unordered_set<char> us;
 
-        for (const auto c : s)
-        {
+        for (const auto c : s) {
             us.insert(c);
         }
 
-        for (char c = 'Z'; c >= 'A'; --c)
-        {
-            if (us.count(c) && us.count(c - 'A' + 'a'))
-            {
+        for (char c = 'Z'; c >= 'A'; --c) {
+            if (us.count(c) && us.count(c - 'A' + 'a')) {
                 res.push_back(c);
                 return res;
             }

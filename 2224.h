@@ -11,26 +11,22 @@ public:
 
         res += dstH - srcH;
 
-        if (dstM < srcM)
-        {
+        if (dstM < srcM) {
             dstM += 60;
             --res;
         }
 
-        while (dstM - srcM >= 15)
-        {
+        while (dstM - srcM >= 15) {
             srcM += 15;
             ++res;
         }
 
-        while (dstM - srcM >= 5)
-        {
+        while (dstM - srcM >= 5) {
             srcM += 5;
             ++res;
         }
 
-        while (dstM - srcM >= 1)
-        {
+        while (dstM - srcM >= 1) {
             srcM += 1;
             ++res;
         }

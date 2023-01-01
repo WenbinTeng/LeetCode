@@ -10,16 +10,14 @@ public:
     }
 
 private:
-    void dfs(std::vector<std::vector<int>>& res, std::vector<int>& path, int n, int k, int index, int sum)
-    {
-        if (path.size() == k)
-        {
-            if (sum == n) res.push_back(path);
+    void dfs(std::vector<std::vector<int>> &res, std::vector<int> &path, int n, int k, int index, int sum) {
+        if (path.size() == k) {
+            if (sum == n)
+                res.push_back(path);
             return;
         }
 
-        for (int i = index; i <= 9; ++i)
-        {
+        for (int i = index; i <= 9; ++i) {
             path.push_back(i);
             dfs(res, path, n, k, i + 1, sum + i);
             path.pop_back();

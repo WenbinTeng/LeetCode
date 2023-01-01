@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,19 +8,19 @@ struct TreeNode
 };
 class Solution {
 public:
-    TreeNode* increasingBST(TreeNode* root) {
+    TreeNode *increasingBST(TreeNode *root) {
         head = tail = new TreeNode();
         inorder(root);
         return head->right;
     }
 
 private:
-    TreeNode* head;
-    TreeNode* tail;
+    TreeNode *head;
+    TreeNode *tail;
 
-    void inorder(TreeNode* node)
-    {
-        if (node == nullptr) return;
+    void inorder(TreeNode *node) {
+        if (node == nullptr)
+            return;
 
         inorder(node->left);
         tail->right = new TreeNode(node->val);

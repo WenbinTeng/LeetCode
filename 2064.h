@@ -1,26 +1,21 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int minimizedMaximum(int n, std::vector<int>& quantities) {
+    int minimizedMaximum(int n, std::vector<int> &quantities) {
         int l = 1;
         int r = *std::max_element(quantities.begin(), quantities.end());
 
-        while (l <= r)
-        {
+        while (l <= r) {
             int mid = (l + r) / 2;
             long long need = 0;
-            for (const auto quantity : quantities)
-            {
+            for (const auto quantity : quantities) {
                 need += (quantity - 1) / mid + 1;
             }
-            if (need > n)
-            {
+            if (need > n) {
                 l = mid + 1;
-            }
-            else
-            {
+            } else {
                 r = mid - 1;
             }
         }

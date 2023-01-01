@@ -3,17 +3,16 @@
 class CountIntervals {
 public:
     CountIntervals() {
-
     }
-    
+
     void add(int left, int right) {
         int L = left;
         int R = right;
 
         auto iter = s.lower_bound({left - 1, -2e9});
-        while (iter != s.end())
-        {
-            if (iter->second > right + 1) break;
+        while (iter != s.end()) {
+            if (iter->second > right + 1)
+                break;
 
             L = std::min(L, iter->second);
             R = std::max(R, iter->first);
@@ -24,7 +23,7 @@ public:
         cnt += R - L + 1;
         s.insert({R, L});
     }
-    
+
     int count() {
         return cnt;
     }

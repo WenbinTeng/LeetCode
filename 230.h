@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,23 +8,25 @@ struct TreeNode
 };
 class Solution {
 public:
-    int kthSmallest(TreeNode* root, int k) {
+    int kthSmallest(TreeNode *root, int k) {
         return root == nullptr ? 0 : inorder(root, k);
     }
 
 private:
-    int inorder(TreeNode* node, int& cnt)
-    {
-        if (node == nullptr) return -1;
-        else
-        {
-            int a = inorder(node->left,  cnt);
-            if (a != -1) return a;
+    int inorder(TreeNode *node, int &cnt) {
+        if (node == nullptr)
+            return -1;
+        else {
+            int a = inorder(node->left, cnt);
+            if (a != -1)
+                return a;
 
-            if (--cnt == 0) return node->val;
+            if (--cnt == 0)
+                return node->val;
 
             int b = inorder(node->right, cnt);
-            if (b != -1) return b;
+            if (b != -1)
+                return b;
 
             return -1;
         }

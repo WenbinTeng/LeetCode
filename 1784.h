@@ -7,16 +7,15 @@ public:
 
         int index = 0;
 
-        while (index < s.size())
-        {
-            if (s[index++] == '0') break;
+        while (index < s.size()) {
+            if (s[index++] == '0')
+                break;
         }
 
-        while (index < s.size())
-        {
-            if (s[index++] == '1')
-            {
-                flag = false; break;
+        while (index < s.size()) {
+            if (s[index++] == '1') {
+                flag = false;
+                break;
             }
         }
 

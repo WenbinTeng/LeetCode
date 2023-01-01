@@ -1,25 +1,23 @@
+#include <algorithm>
 #include <list>
 #include <string>
-#include <algorithm>
 
 class TextEditor {
 public:
     TextEditor() {
         iter = word.begin();
     }
-    
+
     void addText(std::string text) {
-        for (const auto c : text)
-        {
+        for (const auto c : text) {
             word.insert(iter, c);
         }
     }
-    
+
     int deleteText(int k) {
         int res = 0;
 
-        while (k > 0 && iter != word.begin())
-        {
+        while (k > 0 && iter != word.begin()) {
             iter = std::prev(iter);
             iter = word.erase(iter);
             --k;
@@ -28,19 +26,17 @@ public:
 
         return res;
     }
-    
+
     std::string cursorLeft(int k) {
-        while (k > 0 && iter != word.begin())
-        {
+        while (k > 0 && iter != word.begin()) {
             iter = std::prev(iter);
             --k;
         }
         return getLeftText();
     }
-    
+
     std::string cursorRight(int k) {
-        while (k > 0 && iter != word.end())
-        {
+        while (k > 0 && iter != word.end()) {
             iter = std::next(iter);
             --k;
         }
@@ -51,15 +47,14 @@ private:
     std::list<char> word;
     std::list<char>::iterator iter;
 
-    std::string getLeftText()
-    {
+    std::string getLeftText() {
         std::string res;
 
         auto iter = this->iter;
 
-        for (int i = 0; i < 10; ++i)
-        {
-            if (iter == word.begin()) break;
+        for (int i = 0; i < 10; ++i) {
+            if (iter == word.begin())
+                break;
             iter = std::prev(iter);
             res.push_back(*iter);
         }

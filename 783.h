@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 
 class Solution {
 public:
-    int minDiffInBST(TreeNode* root) {
+    int minDiffInBST(TreeNode *root) {
         inorder(root);
         return res;
     }
@@ -21,9 +20,9 @@ private:
     int val = 0x3f3f3f3f;
     int res = 0x3f3f3f3f;
 
-    void inorder(TreeNode* node)
-    {
-        if (node == nullptr) return;
+    void inorder(TreeNode *node) {
+        if (node == nullptr)
+            return;
 
         inorder(node->left);
 

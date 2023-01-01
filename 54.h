@@ -2,27 +2,27 @@
 
 class Solution {
 public:
-    std::vector<int> spiralOrder(std::vector<std::vector<int>>& matrix) {
+    std::vector<int> spiralOrder(std::vector<std::vector<int>> &matrix) {
         std::vector<int> res;
-        int m = matrix   .size();
+        int m = matrix.size();
         int n = matrix[0].size();
         int limit_u = -1;
-        int limit_d =  m;
+        int limit_d = m;
         int limit_l = -1;
-        int limit_r =  n;
+        int limit_r = n;
         int row = 0;
         int col = 0;
 
-        enum class State {L2R, U2D, R2L, D2U};
+        enum class State { L2R,
+                           U2D,
+                           R2L,
+                           D2U };
         State state = State::L2R;
 
-        while (true)
-        {
-            switch (state)
-            {
+        while (true) {
+            switch (state) {
             case State::L2R:
-                while (col < limit_r)
-                {
+                while (col < limit_r) {
                     res.push_back(matrix[row][col++]);
                 }
                 --col;
@@ -32,8 +32,7 @@ public:
                 break;
 
             case State::U2D:
-                while (row < limit_d)
-                {
+                while (row < limit_d) {
                     res.push_back(matrix[row++][col]);
                 }
                 --col;
@@ -43,8 +42,7 @@ public:
                 break;
 
             case State::R2L:
-                while (col > limit_l)
-                {
+                while (col > limit_l) {
                     res.push_back(matrix[row][col--]);
                 }
                 ++col;
@@ -54,8 +52,7 @@ public:
                 break;
 
             case State::D2U:
-                while (row > limit_u)
-                {
+                while (row > limit_u) {
                     res.push_back(matrix[row--][col]);
                 }
                 ++col;
@@ -67,7 +64,8 @@ public:
             default:;
             }
 
-            if (limit_l + 1 == limit_r || limit_u + 1 == limit_d) break;
+            if (limit_l + 1 == limit_r || limit_u + 1 == limit_d)
+                break;
         }
 
         return res;

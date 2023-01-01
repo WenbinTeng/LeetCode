@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -21,8 +21,7 @@ public:
         dp4[3] = 4;
         dp4[4] = 8;
 
-        for (int i = 5; i <= 1e5; ++i)
-        {
+        for (int i = 5; i <= 1e5; ++i) {
             dp3[i] = (dp3[i - 1] + dp3[i - 2] + dp3[i - 3]) % mod;
             dp4[i] = (dp4[i - 1] + dp4[i - 2] + dp4[i - 3] + dp4[i - 4]) % mod;
         }
@@ -31,21 +30,14 @@ public:
         int r = 0;
         int cnt = 0;
 
-        while (r < pressedKeys.size())
-        {
-            if (pressedKeys[l] == pressedKeys[r])
-            {
+        while (r < pressedKeys.size()) {
+            if (pressedKeys[l] == pressedKeys[r]) {
                 ++cnt;
                 ++r;
-            }
-            else
-            {
-                if (pressedKeys[l] == '7' || pressedKeys[l] == '9')
-                {
+            } else {
+                if (pressedKeys[l] == '7' || pressedKeys[l] == '9') {
                     res = (res * dp4[cnt]) % mod;
-                }
-                else
-                {
+                } else {
                     res = (res * dp3[cnt]) % mod;
                 }
                 l = r;
@@ -53,14 +45,10 @@ public:
             }
         }
 
-        if (cnt != 0)
-        {
-            if (pressedKeys[l] == '7' || pressedKeys[l] == '9')
-            {
+        if (cnt != 0) {
+            if (pressedKeys[l] == '7' || pressedKeys[l] == '9') {
                 res = (res * dp4[cnt]) % mod;
-            }
-            else
-            {
+            } else {
                 res = (res * dp3[cnt]) % mod;
             }
         }

@@ -2,8 +2,7 @@
 
 class Solution {
 public:
-    std::string intToRoman(int num)
-    {
+    std::string intToRoman(int num) {
         const char *alphabet[4][10] = {
             {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
             {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},

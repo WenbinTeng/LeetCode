@@ -1,7 +1,6 @@
 #include <algorithm>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -12,7 +11,7 @@ struct TreeNode
 
 class Solution {
 public:
-    bool isBalanced(TreeNode* root) {
+    bool isBalanced(TreeNode *root) {
         checkHeight(root);
         return res;
     }
@@ -20,11 +19,11 @@ public:
 private:
     bool res = true;
 
-    int checkHeight(TreeNode* node)
-    {
-        if (node == nullptr || !res) return 0;
+    int checkHeight(TreeNode *node) {
+        if (node == nullptr || !res)
+            return 0;
 
-        int left  = checkHeight(node->left );
+        int left = checkHeight(node->left);
         int right = checkHeight(node->right);
 
         res = res && std::abs(left - right) <= 1;

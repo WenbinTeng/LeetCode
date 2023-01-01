@@ -1,5 +1,5 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
@@ -8,9 +8,9 @@ public:
     }
 
 private:
-    int dfs(int a, int b, int c, int score)
-    {
-        if (a < 0 || b < 0 || c < 0) return score - 1;
+    int dfs(int a, int b, int c, int score) {
+        if (a < 0 || b < 0 || c < 0)
+            return score - 1;
 
         std::vector<int> numVec = {a, b, c};
         std::vector<int>::iterator iter;
@@ -22,6 +22,6 @@ private:
         int minValue = *iter;
         numVec.erase(iter);
 
-        return minValue == 0 ? dfs(maxValue - 1, minValue, numVec[0] - 1, score +1) : dfs(maxValue - 1, minValue - 1, numVec[0], score +1);
+        return minValue == 0 ? dfs(maxValue - 1, minValue, numVec[0] - 1, score + 1) : dfs(maxValue - 1, minValue - 1, numVec[0], score + 1);
     }
 };

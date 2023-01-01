@@ -1,6 +1,6 @@
-#include <string>
 #include <sstream>
 #include <stack>
+#include <string>
 
 class Solution {
 public:
@@ -9,31 +9,26 @@ public:
         std::stack<int> sign;
         std::string n;
 
-        nums.push( 0 );
+        nums.push(0);
         sign.push('(');
         sign.push('+');
         s.push_back(')');
 
-        for (const auto& c : s)
-        {
-            if (c == ' ')
-            {
+        for (const auto &c : s) {
+            if (c == ' ') {
                 continue;
             }
-            if (c == '(')
-            {
-                sign.push( c );
+            if (c == '(') {
+                sign.push(c);
                 sign.push('+');
                 continue;
             }
-            if (c == ')')
-            {
+            if (c == ')') {
                 nums.push(n.empty() ? 0 : std::stoi(n));
                 n = "";
 
                 int sum = 0;
-                while (sign.top() != '(')
-                {
+                while (sign.top() != '(') {
                     sum += sign.top() == '-' ? -nums.top() : nums.top();
                     nums.pop();
                     sign.pop();
@@ -46,15 +41,13 @@ public:
 
                 continue;
             }
-            if (c == '+' || c == '-')
-            {
+            if (c == '+' || c == '-') {
                 nums.push(n.empty() ? 0 : std::stoi(n));
                 sign.push(c);
                 n = "";
                 continue;
             }
-            if (c >= '0' && c <= '9')
-            {
+            if (c >= '0' && c <= '9') {
                 n.push_back(c);
             }
         }

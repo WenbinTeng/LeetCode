@@ -1,9 +1,9 @@
-#include <vector>
 #include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
-    std::vector<std::vector<int>> findSubsequences(std::vector<int>& nums) {
+    std::vector<std::vector<int>> findSubsequences(std::vector<int> &nums) {
         std::vector<std::vector<int>> res;
         std::vector<int> path;
 
@@ -13,15 +13,15 @@ public:
     }
 
 private:
-    void dfs(std::vector<int>& nums, std::vector<std::vector<int>>& res, std::vector<int>& path, int index)
-    {
-        if (path.size() >= 2) res.push_back(path);
+    void dfs(std::vector<int> &nums, std::vector<std::vector<int>> &res, std::vector<int> &path, int index) {
+        if (path.size() >= 2)
+            res.push_back(path);
 
         std::unordered_set<int> used;
 
-        for (int i = index; i < nums.size(); ++i)
-        {
-            if (!path.empty() && nums[i] < path.back() || used.find(nums[i]) != used.end()) continue;
+        for (int i = index; i < nums.size(); ++i) {
+            if (!path.empty() && nums[i] < path.back() || used.find(nums[i]) != used.end())
+                continue;
 
             used.insert(nums[i]);
             path.push_back(nums[i]);

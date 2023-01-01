@@ -1,10 +1,10 @@
-#include <vector>
-#include <queue>
 #include <algorithm>
+#include <queue>
+#include <vector>
 
 class Solution {
 public:
-    int distributeCookies(std::vector<int>& cookies, int k) {
+    int distributeCookies(std::vector<int> &cookies, int k) {
         std::vector<int> alloc(k);
 
         std::sort(cookies.begin(), cookies.end());
@@ -20,16 +20,13 @@ public:
 private:
     int res = 0x3f3f3f3f;
 
-    void dfs(std::vector<int>& cookies, std::vector<int>& alloc, int index, int value)
-    {
-        if (index == cookies.size())
-        {
+    void dfs(std::vector<int> &cookies, std::vector<int> &alloc, int index, int value) {
+        if (index == cookies.size()) {
             res = std::min(res, value);
             return;
         }
 
-        for (int i = 0; i < alloc.size(); ++i)
-        {
+        for (int i = 0; i < alloc.size(); ++i) {
             alloc[i] += cookies[index];
             dfs(cookies, alloc, index + 1, std::max(value, alloc[i]));
             alloc[i] -= cookies[index];

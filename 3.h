@@ -3,7 +3,8 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(std::string s) {
-        if (!s.size()) return 0;
+        if (!s.size())
+            return 0;
 
         int flag[256] = {0};
         int head = 0;
@@ -12,13 +13,10 @@ public:
         int stringSize = s.size();
 
         flag[s[0]] = 1;
-        while (tail++ < stringSize)
-        {
-            if (flag[s[tail]])
-            {
+        while (tail++ < stringSize) {
+            if (flag[s[tail]]) {
                 maxLen = std::max(maxLen, tail - head);
-                while (head < flag[s[tail]])
-                {
+                while (head < flag[s[tail]]) {
                     flag[s[head++]] = 0;
                 }
             }

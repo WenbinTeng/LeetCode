@@ -1,15 +1,14 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    long long maxRunTime(int n, std::vector<int>& batteries) {
+    long long maxRunTime(int n, std::vector<int> &batteries) {
         std::vector<long long> prev(batteries.size() + 1);
 
         std::sort(batteries.begin(), batteries.end());
 
-        for (int i = 0; i < batteries.size(); ++i)
-        {
+        for (int i = 0; i < batteries.size(); ++i) {
             prev[i + 1] = prev[i] + batteries[i];
         }
 
@@ -20,16 +19,12 @@ public:
 
         long long l = 0;
         long long r = prev.back() / n;
-        while (l <= r)
-        {
+        while (l <= r) {
             long long mid = (l + r) / 2;
 
-            if (check(mid))
-            {
+            if (check(mid)) {
                 l = mid + 1;
-            }
-            else
-            {
+            } else {
                 r = mid - 1;
             }
         }

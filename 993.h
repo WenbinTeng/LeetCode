@@ -1,5 +1,4 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -9,7 +8,7 @@ struct TreeNode
 };
 class Solution {
 public:
-    bool isCousins(TreeNode* root, int x, int y) {
+    bool isCousins(TreeNode *root, int x, int y) {
         preorder(root, 0, x, y);
         return xDepth == yDepth && !sameFather;
     }
@@ -19,22 +18,23 @@ private:
     int yDepth = -1;
     bool sameFather = false;
 
-    void preorder(TreeNode* node, int depth, int x, int y)
-    {
-        if (node == nullptr) return;
+    void preorder(TreeNode *node, int depth, int x, int y) {
+        if (node == nullptr)
+            return;
 
-        if (node->val == x) xDepth = depth;
-        if (node->val == y) yDepth = depth;
+        if (node->val == x)
+            xDepth = depth;
+        if (node->val == y)
+            yDepth = depth;
 
-        if (xDepth >= 0 && yDepth >= 0) return;
+        if (xDepth >= 0 && yDepth >= 0)
+            return;
 
-        preorder(node->left,  depth + 1, x, y);
+        preorder(node->left, depth + 1, x, y);
         preorder(node->right, depth + 1, x, y);
 
-        if (node->left != nullptr && node->right != nullptr)
-        {
-            if (node->left->val == x && node->right->val == y || node->left->val == y && node->right->val == x)
-            {
+        if (node->left != nullptr && node->right != nullptr) {
+            if (node->left->val == x && node->right->val == y || node->left->val == y && node->right->val == x) {
                 sameFather = true;
             }
         }

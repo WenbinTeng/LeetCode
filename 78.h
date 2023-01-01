@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    std::vector<std::vector<int>> subsets(std::vector<int>& nums) {
+    std::vector<std::vector<int>> subsets(std::vector<int> &nums) {
         std::vector<std::vector<int>> res;
         std::vector<int> rec;
 
@@ -12,9 +12,11 @@ public:
     }
 
 private:
-    void dfs(std::vector<int>& nums, std::vector<std::vector<int>>& res, std::vector<int>& rec, int index)
-    {
-        if (index == nums.size()) {res.push_back(rec); return;}
+    void dfs(std::vector<int> &nums, std::vector<std::vector<int>> &res, std::vector<int> &rec, int index) {
+        if (index == nums.size()) {
+            res.push_back(rec);
+            return;
+        }
 
         rec.push_back(nums[index]);
         dfs(nums, res, rec, index + 1);

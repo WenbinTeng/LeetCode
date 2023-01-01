@@ -6,14 +6,10 @@ public:
     char repeatedCharacter(std::string s) {
         std::unordered_set<char> us;
 
-        for (const auto c : s)
-        {
-            if (us.count(c))
-            {
+        for (const auto c : s) {
+            if (us.count(c)) {
                 return c;
-            }
-            else
-            {
+            } else {
                 us.insert(c);
             }
         }

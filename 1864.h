@@ -1,5 +1,5 @@
-#include <string>
 #include <algorithm>
+#include <string>
 
 class Solution {
 public:
@@ -10,15 +10,19 @@ public:
         int ones = std::count(s.begin(), s.end(), '1');
         bool flag;
 
-        if (std::abs(zero - ones) > 1 || s.size() % 2 == 0 && zero != ones) return -1;
+        if (std::abs(zero - ones) > 1 || s.size() % 2 == 0 && zero != ones)
+            return -1;
 
         auto helper = [&]() {
-            if (s.size() % 2 == 1 && zero > ones &&  flag) return;
-            if (s.size() % 2 == 1 && ones > zero && !flag) return;
+            if (s.size() % 2 == 1 && zero > ones && flag)
+                return;
+            if (s.size() % 2 == 1 && ones > zero && !flag)
+                return;
 
-            for (const auto& c : s)
-            {
-                if (!flag && c == '1') ++cnt; flag = !flag;
+            for (const auto &c : s) {
+                if (!flag && c == '1')
+                    ++cnt;
+                flag = !flag;
             }
 
             res = std::min(res, cnt);
