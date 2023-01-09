@@ -6,7 +6,7 @@ public:
         nums.resize(n);
         perm.resize(n);
         for (int i = 0; i < n; ++i)
-            perm.push_back(i);
+            perm[i] = i;
 
         int res = 1;
 
@@ -22,7 +22,7 @@ private:
 
     bool foo() {
         for (int i = 0, n = perm.size(); i < n; ++i) {
-            nums[i] = i & 1 ? nums[i] = perm[n / 2 + (i - 1) / 2] : nums[i] = perm[i / 2];
+            nums[i] = i & 1 ? perm[n / 2 + (i - 1) / 2] : perm[i / 2];
         }
 
         perm = nums;
