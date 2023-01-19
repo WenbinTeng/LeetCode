@@ -16,8 +16,7 @@ public:
                     ++cnt;
                 }
             } else {
-                if (cnt < k)
-                    ++res[cnt - 1];
+                ++res[cnt - 1];
                 cnt = 1;
             }
         }
