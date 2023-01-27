@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    std::vector<int> productExceptSelf(std::vector<int>& nums) {
+    std::vector<int> productExceptSelf(std::vector<int> &nums) {
         std::vector<int> res(nums.size());
         std::vector<int> lpp(nums.size());
         std::vector<int> rpp(nums.size());

@@ -4,7 +4,7 @@ class Solution {
 public:
     int minCost(std::vector<int> &nums, int K) {
         std::vector<long long> dp(nums.size() + 1, 1e+18);
-        
+
         dp[0] = 0;
         for (int i = 1; i <= nums.size(); ++i) {
             std::vector<int> cnt(nums.size(), 0);

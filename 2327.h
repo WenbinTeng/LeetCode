@@ -14,7 +14,7 @@ public:
             f[i] = (g[R] - g[L] + mod) % mod;
             g[i] = (g[i - 1] + f[i]) % mod;
         }
-        
+
         return (g[n] - g[std::max(0, n - forget)] + mod) % mod;
     }
 };

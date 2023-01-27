@@ -1,5 +1,5 @@
-#include <vector>
 #include <queue>
+#include <vector>
 
 class Solution {
 public:

@@ -9,10 +9,11 @@ struct ListNode {
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if (head == nullptr) return nullptr;
+        if (head == nullptr)
+            return nullptr;
 
         auto ptr = head;
-        std::unordered_set<ListNode*> us;
+        std::unordered_set<ListNode *> us;
 
         while (ptr != nullptr) {
             if (us.count(ptr)) {

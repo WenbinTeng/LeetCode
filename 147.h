@@ -8,15 +8,15 @@ struct ListNode {
 
 class Solution {
 public:
-    ListNode* insertionSortList(ListNode* head) {
+    ListNode *insertionSortList(ListNode *head) {
         if (head == nullptr) {
             return head;
         }
 
-        ListNode* temp = new ListNode(0, head);
-        ListNode* last = head;
-        ListNode* curr = head->next;
-        
+        ListNode *temp = new ListNode(0, head);
+        ListNode *last = head;
+        ListNode *curr = head->next;
+
         while (curr != nullptr) {
             if (last->val <= curr->val) {
                 last = last->next;

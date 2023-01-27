@@ -10,7 +10,8 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *invertTree(TreeNode *root) {
-        if (root == nullptr) return nullptr;
+        if (root == nullptr)
+            return nullptr;
 
         auto temp = root->left;
         root->left = root->right;

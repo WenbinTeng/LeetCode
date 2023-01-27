@@ -12,7 +12,7 @@ public:
                 if (num == candidate)
                     ++count;
             }
-            
+
             if (count > nums.size() / 2)
                 return candidate;
         }

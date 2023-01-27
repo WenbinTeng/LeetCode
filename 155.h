@@ -5,21 +5,21 @@ public:
     MinStack() {
         minStack.push(INT_MAX);
     }
-    
+
     void push(int val) {
         valStack.push(val);
         minStack.push(std::min(minStack.top(), val));
     }
-    
+
     void pop() {
         valStack.pop();
         minStack.pop();
     }
-    
+
     int top() {
         return valStack.top();
     }
-    
+
     int getMin() {
         return minStack.top();
     }

@@ -1,6 +1,6 @@
-#include <vector>
-#include <numeric>
 #include <algorithm>
+#include <numeric>
+#include <vector>
 
 class Solution {
 public:

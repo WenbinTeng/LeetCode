@@ -1,5 +1,5 @@
-#include <string>
 #include <sstream>
+#include <string>
 
 struct TreeNode {
     int val;
@@ -25,10 +25,10 @@ public:
     }
 
 private:
-    TreeNode* deserHelper(std::istringstream &ss) {
+    TreeNode *deserHelper(std::istringstream &ss) {
         std::string s;
         ss >> s;
-        
+
         if (s == "#") {
             return nullptr;
         }
