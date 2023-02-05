@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    int minimumMoves(std::vector<std::vector<int>>& grid) {
+    int minimumMoves(std::vector<std::vector<int>> &grid) {
         int n = grid.size();
         const int max = 0x3f3f3f3f;
         std::vector<std::vector<std::array<int, 2>>> f(n, std::vector<std::array<int, 2>>(n, {max, max}));
