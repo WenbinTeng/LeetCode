@@ -14,21 +14,21 @@ public:
                 bool ver = (i + 1 < n && grid[i][j] == 0 && grid[i + 1][j] == 0);
 
                 if (i - 1 >= 0 && hor) {
-                    f[i][j][0] = min(f[i][j][0], f[i - 1][j][0] + 1);
+                    f[i][j][0] = std::min(f[i][j][0], f[i - 1][j][0] + 1);
                 }
                 if (j - 1 >= 0 && hor) {
-                    f[i][j][0] = min(f[i][j][0], f[i][j - 1][0] + 1);
+                    f[i][j][0] = std::min(f[i][j][0], f[i][j - 1][0] + 1);
                 }
                 if (i - 1 >= 0 && ver) {
-                    f[i][j][1] = min(f[i][j][1], f[i - 1][j][1] + 1);
+                    f[i][j][1] = std::min(f[i][j][1], f[i - 1][j][1] + 1);
                 }
                 if (j - 1 >= 0 && ver) {
-                    f[i][j][1] = min(f[i][j][1], f[i][j - 1][1] + 1);
+                    f[i][j][1] = std::min(f[i][j][1], f[i][j - 1][1] + 1);
                 }
 
                 if (hor && ver && grid[i + 1][j + 1] == 0) {
-                    f[i][j][0] = min(f[i][j][0], f[i][j][1] + 1);
-                    f[i][j][1] = min(f[i][j][1], f[i][j][0] + 1);
+                    f[i][j][0] = std::min(f[i][j][0], f[i][j][1] + 1);
+                    f[i][j][1] = std::min(f[i][j][1], f[i][j][0] + 1);
                 }
             }
         }
