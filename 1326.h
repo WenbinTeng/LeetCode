@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    int minTaps(int n, std::vector<int>& ranges) {
+    int minTaps(int n, std::vector<int> &ranges) {
         int res = 0;
         int prev = 0;
         int last = 0;
@@ -17,7 +17,7 @@ public:
             int end = std::min(n, i + ranges[i]);
             rMax[start] = std::max(rMax[start], end);
         }
-        
+
         for (int i = 0; i < n; i++) {
             last = std::max(last, rMax[i]);
             if (i == last) {
@@ -28,7 +28,7 @@ public:
                 prev = last;
             }
         }
-        
+
         return res;
     }
 };

@@ -11,7 +11,7 @@ public:
             int l = i - 1 >= 0 ? nums[i - 1] : nums[i] + 1;
             int r = i + 1 < n ? nums[i + 1] : nums[i] + 1;
             int min = std::min(l, r);
-            
+
             if (i % 2 == 0) {
                 if (nums[i] >= min)
                     cnt1 += nums[i] - min + 1;

@@ -1,9 +1,9 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int getMaximumConsecutive(std::vector<int>& coins) {
+    int getMaximumConsecutive(std::vector<int> &coins) {
         int res = 1;
 
         std::sort(coins.begin(), coins.end());

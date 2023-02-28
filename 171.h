@@ -12,7 +12,6 @@ public:
             columnTitle.pop_back();
         }
 
-
         return res;
     }
 };

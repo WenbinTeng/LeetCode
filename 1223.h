@@ -2,9 +2,9 @@
 
 class Solution {
 public:
-    int dieSimulator(int n, std::vector<int>& rollMax) {
+    int dieSimulator(int n, std::vector<int> &rollMax) {
         int res = 0;
-        int mod = 1e+9+7;
+        int mod = 1e+9 + 7;
         std::vector d(n + 1, std::vector(6, std::vector<int>(16)));
 
         for (int j = 0; j < 6; j++) {
@@ -23,7 +23,7 @@ public:
                 }
             }
         }
-        
+
         for (int j = 0; j < 6; j++) {
             for (int k = 1; k <= rollMax[j]; k++) {
                 res = (res + d[n][j][k]) % mod;

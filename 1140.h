@@ -1,13 +1,12 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int stoneGameII(std::vector<int>& piles) {
+    int stoneGameII(std::vector<int> &piles) {
         lastSum = std::vector<int>(piles);
         visited = std::vector<std::vector<int>>(piles.size(), std::vector<int>(piles.size(), -1));
 
-        
         for (int i = lastSum.size() - 2; i >= 0; --i) {
             lastSum[i] += lastSum[i + 1];
         }

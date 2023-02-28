@@ -19,7 +19,7 @@ public:
                 res.append(nx - cx, 'D');
             if (ny > cy)
                 res.append(ny - cy, 'R');
-            
+
             res.push_back('!');
             cx = nx;
             cy = ny;

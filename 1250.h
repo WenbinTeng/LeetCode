@@ -1,9 +1,9 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    bool isGoodArray(std::vector<int>& nums) {
+    bool isGoodArray(std::vector<int> &nums) {
         int divisor = nums[0];
 
         for (int num : nums) {
@@ -12,7 +12,7 @@ public:
                 break;
             }
         }
-        
+
         return divisor == 1;
     }
 };
