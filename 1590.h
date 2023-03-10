@@ -13,7 +13,7 @@ public:
         prevSum[0] = 0;
         for (int i = 0; i < n; ++i)
             prevSum[i + 1] = (prevSum[i] + nums[i]) % p;
-        if (x == 0)
+        if (prevSum.back() == 0)
             return 0;
 
         x = prevSum[n];
@@ -23,7 +23,7 @@ public:
             if (it != um.end())
                 res = std::min(res, i - it->second);
         }
-        
+
         return res < n ? res : -1;
     }
 };
