@@ -1,9 +1,9 @@
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 class Solution {
 public:
-    int sumOfUnique(std::vector<int>& nums) {
+    int sumOfUnique(std::vector<int> &nums) {
         int res = 0;
         std::unordered_map<int, int> cnt;
 
@@ -11,7 +11,7 @@ public:
             cnt[num]++;
         }
 
-        for (const auto& [v, c] : cnt) {
+        for (const auto &[v, c] : cnt) {
             if (c == 1) {
                 res += v;
             }
