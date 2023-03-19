@@ -1,5 +1,5 @@
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 class Solution {
 public:
@@ -7,7 +7,7 @@ public:
         int res = 0;
         int pos = std::find(nums.begin(), nums.end(), k) - nums.begin();
         std::unordered_map<int, int> cnt;
-        
+
         cnt[0] = 1;
         for (int i = pos - 1, x = 0; i >= 0; --i) {
             x += nums[i] < k ? 1 : -1;

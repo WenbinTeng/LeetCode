@@ -1,9 +1,9 @@
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Solution {
 public:
-    int findContentChildren(std::vector<int>& g, std::vector<int>& s) {
+    int findContentChildren(std::vector<int> &g, std::vector<int> &s) {
         int res = 0;
         int gp = 0;
         int sp = 0;
