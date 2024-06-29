@@ -18,7 +18,7 @@ private:
 
         dfs(res, n - 1);
 
-        for (int i = res.size() - 1; i >= 0; --i) {
+        for (int i = res.size() - 1; i >= 0; i--) {
             res.push_back((1 << n - 1) | res[i]);
         }
     }

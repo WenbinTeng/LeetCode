@@ -8,9 +8,9 @@ public:
         while (r < nums.size()) {
             if (l < 2 || nums[l - 2] < nums[r]) {
                 nums[l] = nums[r];
-                ++l;
+                l++;
             }
-            ++r;
+            r++;
         }
 
         return l;

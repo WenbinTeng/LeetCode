@@ -19,7 +19,7 @@ public:
         int swapValX = -1;
         int swapValY = -1;
 
-        for (int i = 1; i < rec.size(); ++i) {
+        for (int i = 1; i < rec.size(); i++) {
             if (rec[i - 1] > rec[i]) {
                 swapValX = swapValX == -1 ? rec[i - 1] : swapValX;
                 swapValY = rec[i];

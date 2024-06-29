@@ -7,7 +7,7 @@ public:
         int cnt = 0;
         res = 0;
 
-        for (int i = 0; i < (n + 1) / 2; ++i) {
+        for (int i = 0; i < (n + 1) / 2; i++) {
             if (i == n / 2)
                 cnt = res;
 
@@ -43,11 +43,11 @@ private:
 
     void backtrack(int n, int row) {
         if (row == n) {
-            ++res;
+            res++;
             return;
         }
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             if (col.find(i) != col.end())
                 continue;
             if (posDiag.find(row - i) != col.end())

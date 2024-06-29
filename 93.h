@@ -32,7 +32,7 @@ private:
             return;
         }
 
-        for (int i = 1; i <= 3; ++i) {
+        for (int i = 1; i <= 3; i++) {
             if (std::stoi(s.substr(index, i)) < 256) {
                 rec.push_back(s.substr(index, i) + '.');
                 dfs(res, rec, s, index + i);

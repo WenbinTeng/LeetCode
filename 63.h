@@ -11,8 +11,8 @@ public:
         std::vector<std::vector<int>> rec(m, std::vector<int>(n, 0));
 
         rec[0][0] = 1;
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
                 if (obstacleGrid[i][j] == 1)
                     continue;
                 if (i > 0)

@@ -14,16 +14,16 @@ public:
             return true;
 
         std::vector<int> rec(26);
-        for (int i = 0; i < s1.size() && i < s2.size(); ++i) {
+        for (int i = 0; i < s1.size() && i < s2.size(); i++) {
             ++rec[s1[i] - 'a'];
             --rec[s2[i] - 'a'];
         }
-        for (int i = 0; i < 26; ++i) {
+        for (int i = 0; i < 26; i++) {
             if (rec[i] != 0)
                 return false;
         }
 
-        for (int i = 0; i < s1.size() && i < s2.size(); ++i) {
+        for (int i = 0; i < s1.size() && i < s2.size(); i++) {
             if (isScramble(s1.substr(0, i), s2.substr(0, i)) && isScramble(s1.substr(i, n1), s2.substr(i, n2)))
                 return true;
             if (isScramble(s1.substr(0, i), s2.substr(n2 - i, n2)) && isScramble(s1.substr(i, n1), s2.substr(0, n2 - i)))

@@ -21,7 +21,7 @@ public:
 
         k = k % len;
 
-        for (int i = 0; i < k; ++i) {
+        for (int i = 0; i < k; i++) {
             nextPtr = nextPtr->next;
         }
 

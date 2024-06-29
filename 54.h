@@ -25,9 +25,9 @@ public:
                 while (col < limit_r) {
                     res.push_back(matrix[row][col++]);
                 }
-                --col;
-                ++row;
-                ++limit_u;
+                col--;
+                row++;
+                limit_u++;
                 state = State::U2D;
                 break;
 
@@ -35,9 +35,9 @@ public:
                 while (row < limit_d) {
                     res.push_back(matrix[row++][col]);
                 }
-                --col;
-                --row;
-                --limit_r;
+                col--;
+                row--;
+                limit_r--;
                 state = State::R2L;
                 break;
 
@@ -45,9 +45,9 @@ public:
                 while (col > limit_l) {
                     res.push_back(matrix[row][col--]);
                 }
-                ++col;
-                --row;
-                --limit_d;
+                col++;
+                row--;
+                limit_d--;
                 state = State::D2U;
                 break;
 
@@ -55,9 +55,9 @@ public:
                 while (row > limit_u) {
                     res.push_back(matrix[row--][col]);
                 }
-                ++col;
-                ++row;
-                ++limit_l;
+                col++;
+                row++;
+                limit_l++;
                 state = State::L2R;
                 break;
 

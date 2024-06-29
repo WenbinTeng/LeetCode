@@ -13,7 +13,7 @@ public:
         while (i < intervals.size() && !placed) {
             if (intervals[i][1] < newInterval[0]) {
                 res.push_back(intervals[i]);
-                ++i;
+                i++;
             } else if (intervals[i][0] > newInterval[1]) {
                 res.push_back(newInterval);
                 placed = true;
@@ -21,7 +21,7 @@ public:
             } else {
                 newInterval[0] = intervals[i][0] < newInterval[0] ? intervals[i][0] : newInterval[0];
 
-                for (int j = i; j < intervals.size(); ++j) {
+                for (int j = i; j < intervals.size(); j++) {
                     if (intervals[j][0] > newInterval[1]) {
                         res.push_back(newInterval);
                         placed = true;

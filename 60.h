@@ -8,7 +8,7 @@ public:
         std::vector<bool> used(n + 1, false);
         std::vector<int> factorial(n + 1, 1);
 
-        for (int i = 1; i <= n; ++i) {
+        for (int i = 1; i <= n; i++) {
             factorial[i] = factorial[i - 1] * i;
         }
 
@@ -22,7 +22,7 @@ private:
         if (index == n)
             return;
 
-        for (int i = 1; i <= n; ++i) {
+        for (int i = 1; i <= n; i++) {
             if (used[i])
                 continue;
 

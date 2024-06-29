@@ -13,7 +13,7 @@ public:
         int r = 0;
 
         while (r < s.size() && rec.find(s[r]) == rec.end())
-            ++r;
+            r++;
         l = r;
 
         while (r < s.size()) {
@@ -21,7 +21,7 @@ public:
                 ++win[s[r]];
             while (l <= r && check()) {
                 if (rec.find(s[l]) != rec.end())
-                    --win[s[l]];
+                    win[s[l]]--;
                 if (len > r - l + 1) {
                     len = r - l + 1;
                     index = l;

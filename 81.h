@@ -5,7 +5,7 @@ public:
     bool search(std::vector<int> &nums, int target) {
         int offset = 0;
 
-        for (int i = 1; i < nums.size(); ++i) {
+        for (int i = 1; i < nums.size(); i++) {
             if (nums[i] < nums[i - 1]) {
                 offset = i;
                 break;

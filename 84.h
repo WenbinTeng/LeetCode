@@ -15,7 +15,7 @@ public:
 
         while (!s.empty())
             s.pop();
-        for (int i = 0; i <= n - 1; ++i) {
+        for (int i = 0; i <= n - 1; i++) {
             while (!s.empty() && heights[s.top()] >= heights[i])
                 s.pop();
             lBoarder[i] = s.empty() ? -1 : s.top();
@@ -24,14 +24,14 @@ public:
 
         while (!s.empty())
             s.pop();
-        for (int i = n - 1; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; i--) {
             while (!s.empty() && heights[s.top()] >= heights[i])
                 s.pop();
             rBoarder[i] = s.empty() ? n : s.top();
             s.push(i);
         }
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             res = std::max(res, heights[i] * (rBoarder[i] - lBoarder[i] - 1));
         }
 

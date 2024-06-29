@@ -16,7 +16,7 @@ private:
     void dfs(std::vector<int> &nums, std::vector<std::vector<int>> &res, std::vector<int> &path, std::vector<bool> &used, int index) {
         res.push_back(path);
 
-        for (int i = index; i < nums.size(); ++i) {
+        for (int i = index; i < nums.size(); i++) {
             if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])
                 continue;
 

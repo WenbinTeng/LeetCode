@@ -9,7 +9,7 @@ public:
         std::reverse(b.begin(), b.end());
 
         int carry = 0;
-        for (int i = 0, n = std::max(a.size(), b.size()); i < n; ++i) {
+        for (int i = 0, n = std::max(a.size(), b.size()); i < n; i++) {
             carry += i < a.size() ? (a.at(i) == '1') : 0;
             carry += i < b.size() ? (b.at(i) == '1') : 0;
             res.push_back((carry % 2) ? '1' : '0');

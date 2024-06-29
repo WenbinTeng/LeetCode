@@ -15,11 +15,11 @@ public:
             if (space >= words[index].size() + 1) {
                 space -= words[index].size() + 1;
                 sel.push_back(words[index] + ' ');
-                ++index;
+                index++;
             } else {
                 while (space > 0) {
                     if (sel.size() > 1) {
-                        for (int i = 0; i < sel.size() - 1 && space--; ++i)
+                        for (int i = 0; i < sel.size() - 1 && space--; i++)
                             sel[i].push_back(' ');
                     } else {
                         while (space--)

@@ -17,7 +17,7 @@ private:
             res.push_back(path);
             return;
         }
-        for (int i = index; i <= n - (k - path.size()) + 1; ++i) {
+        for (int i = index; i <= n - (k - path.size()) + 1; i++) {
             path.push_back(i);
             dfs(res, path, n, k, i + 1);
             path.pop_back();

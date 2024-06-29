@@ -8,7 +8,7 @@ public:
         int n = board[0].size();
         std::vector<std::vector<bool>> vis(m, std::vector<bool>(n, false));
 
-        for (int i = 0; i < m * n && !finded; ++i) {
+        for (int i = 0; i < m * n && !finded; i++) {
             if (board[i / n][i % n] == word[0]) {
                 vis[i / n][i % n] = true;
                 dfs(board, word, vis, 1, i / n, i % n);

@@ -16,9 +16,9 @@ public:
         ListNode *currPtr;
         ListNode *nextPtr;
 
-        for (int i = 0; i < m - 1; ++i)
+        for (int i = 0; i < m - 1; i++)
             headPtr = headPtr->next;
-        for (int i = 0; i < n + 1; ++i)
+        for (int i = 0; i < n + 1; i++)
             tailPtr = tailPtr->next;
 
         prevPtr = headPtr == nullptr ? nullptr : headPtr->next;
