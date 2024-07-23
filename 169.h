@@ -1,21 +1,21 @@
-#include <cstdlib>
 #include <vector>
+#include <unordered_map>
 
 class Solution {
 public:
-    int majorityElement(std::vector<int> &nums) {
-        while (true) {
-            int candidate = nums[rand() % nums.size()];
-            int count = 0;
+    int majorityElement(std::vector<int>& nums) {
+        int res = 0;
+        int val = 0;
+        std::unordered_map<int, int> count;
 
-            for (int num : nums) {
-                if (num == candidate)
-                    ++count;
+        for (const auto num : nums) {
+            count[num]++;
+            if (val < count[num]) {
+                val = count[num];
+                res = num;
             }
-
-            if (count > nums.size() / 2)
-                return candidate;
         }
-        return -1;
+
+        return res;
     }
 };

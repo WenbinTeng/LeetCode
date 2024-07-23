@@ -2,15 +2,15 @@
 
 class Solution {
 public:
-    bool canJump(std::vector<int> &nums) {
-        int maxPos = 0;
+    bool canJump(std::vector<int>& nums) {
+        int furthest = 0;
 
         for (int i = 0; i < nums.size(); i++) {
-            if (i <= maxPos) {
-                maxPos = std::max(maxPos, i + nums[i]);
-            }
-            if (maxPos >= nums.size() - 1) {
-                return true;
+            if (i <= furthest) {
+                furthest = std::max(furthest, i + nums[i]);
+                if (furthest >= nums.size() - 1) {
+                    return true;
+                }
             }
         }
 

@@ -2,17 +2,22 @@
 
 class Solution {
 public:
-    int removeDuplicates(std::vector<int> &nums) {
-        int l = 0;
-        int r = 0;
-        while (r < nums.size()) {
-            if (l < 2 || nums[l - 2] < nums[r]) {
-                nums[l] = nums[r];
-                l++;
-            }
-            r++;
+    int removeDuplicates(std::vector<int>& nums) {
+        if (nums.size() <= 2) {
+            return nums.size();
         }
 
-        return l;
+        int left = 2;
+        int right = 2;
+
+        while (right < nums.size()) {
+            if (nums[right] != nums[left - 1] || nums[right] != nums[left - 2]) {
+                nums[left] = nums[right];
+                left++;
+            }
+            right++;
+        }
+
+        return left;
     }
 };
