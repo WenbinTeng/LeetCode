@@ -5,7 +5,7 @@ public:
     int minFlips(std::vector<std::vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
-        int res = __INT_MAX__;
+        int res = INT_MAX;
         int sum = 0;
 
         for (int i = 0; i < m; i++) {
