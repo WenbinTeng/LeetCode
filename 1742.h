@@ -1,28 +1,23 @@
-#include <unordered_map>
+#include <vector>
+#include <algorithm>
 
 class Solution {
 public:
     int countBalls(int lowLimit, int highLimit) {
-        std::unordered_map<int, int> um;
-        int maxValue = 0;
-        int sum;
-        int num;
+        std::vector<int> cnt(46, 0);
 
-        for (int i = lowLimit; i <= highLimit; i++) {
-            sum = 0;
-            num = i;
-
+        auto sumDigit = [](int num) -> int {
+            int sum = 0;
             while (num) {
-                sum = sum + num % 10;
-                num = num / 10;
+                sum += num % 10;
+                num /= 10;
             }
+            return sum;
+        };
 
-            um[sum]++;
-        }
+        for (int i = lowLimit; i <= highLimit; i++)
+            cnt[sumDigit(i)]++;
 
-        for (const auto &iter : um)
-            maxValue = std::max(maxValue, iter.second);
-
-        return maxValue;
+        return *std::max_element(cnt.begin(), cnt.end());
     }
 };
