@@ -1,23 +1,21 @@
-#include <unordered_map>
 #include <vector>
 
 class Solution {
 public:
-    int numRabbits(std::vector<int> &answers) {
+    int findLength(std::vector<int>& nums1, std::vector<int>& nums2) {
+        const int n = nums1.size();
+        const int m = nums2.size();
         int res = 0;
-        std::unordered_map<int, int> um;
 
-        for (const auto &answer : answers) {
-            if (um[answer] == answer + 1) {
-                um[answer] = 1;
-                res += answer + 1;
-            } else {
-                um[answer] += 1;
+        std::vector<std::vector<int>> dp(n + 1, std::vector<int>(m + 1, 0));
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (nums1[i] == nums2[j]) {
+                    dp[i + 1][j + 1] = dp[i][j] + 1;
+                    res = std::max(res, dp[i + 1][j + 1]);
+                }
             }
-        }
-
-        for (const auto &[answer, count] : um) {
-            res += answer + 1;
         }
 
         return res;
