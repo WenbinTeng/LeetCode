@@ -10,6 +10,7 @@ class Solution {
         std::vector<std::vector<int>> res;
 
         std::sort(nums.begin(), nums.end());
+
         for (int i = 0, n = nums.size(); i < n - 1; i++) {
             if (nums[i] > 0)
                 break;
