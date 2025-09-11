@@ -1,21 +1,24 @@
 #include <string>
-#include <unordered_map>
+#include <unordered_set>
 
 class Solution {
   public:
     int lengthOfLongestSubstring(std::string s) {
-        int res = 0;
+        if (s.empty())
+            return false;
+
+        int res = 1;
         int left = 0;
-        int right = 0;
-        std::unordered_map<char, int> dict;
+        int right = 1;
+        std::unordered_set<char> dict = {s[0]};
 
         while (right < s.size()) {
-            while (dict[s[right]] == 1) {
-                dict[s[left]] = 0;
+            while (dict.count(s[right])) {
+                dict.erase(s[left]);
                 left++;
             }
             res = std::max(res, right - left + 1);
-            dict[s[right]] = 1;
+            dict.insert(s[right]);
             right++;
         }
 

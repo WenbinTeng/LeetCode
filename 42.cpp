@@ -3,18 +3,23 @@
 class Solution {
   public:
     int trap(std::vector<int> &height) {
+        const int n = height.size();
         int res = 0;
+        std::vector<int> leftMax(n, 0);
+        std::vector<int> rightMax(n, 0);
 
-        for (int i = 1, n = height.size() - 1; i < n; i++) {
-            int maxValue[2] = {0, 0};
-            int maxIndex[2] = {i, i};
+        leftMax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = std::max(leftMax[i - 1], height[i]);
+        }
 
-            for (; maxIndex[0] >= 0; maxIndex[0]--)
-                maxValue[0] = std::max(maxValue[0], height[maxIndex[0]]);
-            for (; maxIndex[1] <= n; maxIndex[1]++)
-                maxValue[1] = std::max(maxValue[1], height[maxIndex[1]]);
+        rightMax[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = std::max(rightMax[i + 1], height[i]);
+        }
 
-            res += std::min(maxValue[0], maxValue[1]) - height[i];
+        for (int i = 0; i < n; i++) {
+            res += (std::min(leftMax[i], rightMax[i]) - height[i]);
         }
 
         return res;
