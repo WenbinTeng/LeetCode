@@ -1,19 +1,22 @@
-#include <unordered_map>
 #include <vector>
+#include <unordered_map>
 
 class Solution {
-  public:
-    int firstMissingPositive(std::vector<int> &nums) {
-        std::unordered_map<int, bool> um;
+public:
+    int firstMissingPositive(std::vector<int>& nums) {
+        const int n = nums.size();
 
-        for (const auto &iter : nums)
-            if (iter > 0)
-                um[iter] = true;
+        for (int i = 0; i < n; i++) {
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+                std::swap(nums[nums[i] - 1], nums[i]);
+            }
+        }
 
-        for (int i = 1; i < INT_MAX; i++)
-            if (um.find(i) == um.end())
-                return i;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1)
+                return i + 1;
+        }
 
-        return INT_MAX;
+        return n + 1;
     }
 };

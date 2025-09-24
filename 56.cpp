@@ -7,18 +7,15 @@ class Solution {
     merge(std::vector<std::vector<int>> &intervals) {
         std::vector<std::vector<int>> res;
 
-        std::sort(intervals.begin(), intervals.end(),
-                  [](std::vector<int> &a, std::vector<int> &b) {
-                      return a[0] < b[0];
-                  });
+        std::sort(intervals.begin(), intervals.end());
 
-        for (const auto &coor : intervals) {
-            if (!res.empty() && res.back()[1] >= coor[0]) {
-                if (res.back()[1] < coor[1]) {
-                    res.back()[1] = coor[1];
-                }
+        for (auto interval : intervals) {
+            int l = interval[0];
+            int r = interval[1];
+            if (res.empty() || res.back()[1] < l) {
+                res.push_back(interval);
             } else {
-                res.push_back(coor);
+                res.back()[1] = std::max(res.back()[1], r);
             }
         }
 
