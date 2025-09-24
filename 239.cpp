@@ -1,25 +1,25 @@
-#include <queue>
+#include <deque>
 #include <vector>
 
 class Solution {
   public:
     std::vector<int> maxSlidingWindow(std::vector<int> &nums, int k) {
         std::vector<int> res;
-        std::priority_queue<std::pair<int, int>> pq;
+        std::deque<int> monoQueue;
 
-        for (int i = 0; i < k; ++i) {
-            pq.push({nums[i], i});
-        }
-
-        res.push_back(pq.top().first);
-
-        for (int i = k; i < nums.size(); ++i) {
-            pq.push({nums[i], i});
-            while (pq.top().second <= i - k) {
-                pq.pop();
+        for (int i = 0; i < nums.size(); i++) {
+            if (i >= k) {
+                res.push_back(nums[monoQueue.front()]);
             }
-            res.push_back(pq.top().first);
+            while (!monoQueue.empty() && (monoQueue.front() <= i - k)) {
+                monoQueue.pop_front();
+            }
+            while (!monoQueue.empty() && (nums[monoQueue.back()] < nums[i])) {
+                monoQueue.pop_back();
+            }
+            monoQueue.push_back(i);
         }
+        res.push_back(nums[monoQueue.front()]);
 
         return res;
     }
