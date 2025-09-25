@@ -7,25 +7,23 @@ struct ListNode {
 };
 
 class Solution {
-  public:
-    ListNode *reverseList(ListNode *head) {
+public:
+    ListNode* reverseList(ListNode* head) {
         if (head == nullptr)
             return nullptr;
-        if (head->next == nullptr)
-            return head;
 
-        auto prev = head;
-        auto curr = prev->next;
-        auto next = curr->next;
+        auto currPtr = new ListNode(0, head);
+        auto nextPtr = head;
 
-        head->next = nullptr;
-        while (curr != nullptr) {
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-            next = curr == nullptr ? nullptr : curr->next;
+        while (nextPtr != nullptr) {
+            auto t = nextPtr->next;
+            nextPtr->next = currPtr;
+            currPtr = nextPtr;
+            nextPtr = t;
         }
 
-        return prev;
+        delete head->next;
+        head->next = nullptr;
+        return currPtr;
     }
 };

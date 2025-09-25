@@ -7,20 +7,26 @@ struct ListNode {
 };
 
 class Solution {
-  public:
+public:
     ListNode *detectCycle(ListNode *head) {
-        if (head == nullptr)
-            return nullptr;
+        auto slowPtr = head;
+        auto fastPtr = head;
 
-        auto ptr = head;
-        std::unordered_set<ListNode *> us;
-
-        while (ptr != nullptr) {
-            if (us.count(ptr)) {
+        while (fastPtr != nullptr) {
+            slowPtr = slowPtr->next;
+            fastPtr = fastPtr->next;
+            if (fastPtr)
+                fastPtr = fastPtr->next;
+            else
+                return nullptr;
+            if (fastPtr == slowPtr) {
+                auto ptr = head;
+                while (ptr != slowPtr) {
+                    ptr = ptr->next;
+                    slowPtr = slowPtr->next;
+                }
                 return ptr;
             }
-            us.insert(ptr);
-            ptr = ptr->next;
         }
 
         return nullptr;

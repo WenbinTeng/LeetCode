@@ -5,22 +5,20 @@ struct ListNode {
 };
 
 class Solution {
-  public:
+public:
     bool hasCycle(ListNode *head) {
-        if (head == nullptr)
-            return false;
-
         auto slowPtr = head;
-        auto fastPtr = head->next;
+        auto fastPtr = head;
 
         while (fastPtr != nullptr) {
-            if (slowPtr == fastPtr) {
-                return true;
-            }
             slowPtr = slowPtr->next;
             fastPtr = fastPtr->next;
-            if (fastPtr != nullptr)
+            if (fastPtr)
                 fastPtr = fastPtr->next;
+            else
+                return false;
+            if (fastPtr == slowPtr)
+                return true;
         }
 
         return false;
