@@ -12,27 +12,27 @@ class Solution {
         if (head == nullptr)
             return nullptr;
 
-        ListNode *list = new ListNode(0, head);
-        ListNode *prev = list;
-        ListNode *curr = head;
-        ListNode *next = head->next;
+        auto vhead = new ListNode(0, head);
+        auto p = vhead;
 
-        while (curr) {
-            if (next == nullptr)
+        while (p != nullptr) {
+            auto p1 = p->next;
+            auto p2 = p1 ? p1->next : nullptr;
+
+            if (p1 && p2) {
+                auto t = p2->next;
+                p->next = p2;
+                p2->next = p1;
+                p1->next = t;
+                p = p1;
+            } else {
                 break;
-            else {
-                prev->next = next;
-                curr->next = next->next;
-                next->next = curr;
-
-                prev = curr;
-                curr = curr->next;
-                next = curr ? curr->next : nullptr;
             }
         }
 
-        curr = list->next;
-        delete list;
-        return curr;
+        p = vhead;
+        vhead = vhead->next;
+        delete p;
+        return vhead;
     }
 };

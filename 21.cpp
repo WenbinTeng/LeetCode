@@ -8,36 +8,38 @@ struct ListNode {
 
 class Solution {
   public:
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        ListNode *p1 = l1;
-        ListNode *p2 = l2;
-        ListNode *p3 = new ListNode();
-        ListNode *ph = p3;
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
+        auto p1 = list1;
+        auto p2 = list2;
+        auto vhead = new ListNode();
+        auto curr = vhead;
 
-        while (p1 && p2) {
-            if (p1->val <= p2->val) {
-                p3->next = new ListNode(p1->val);
-                p3 = p3->next;
+        while (p1 != nullptr || p2 != nullptr) {
+            if (p1 != nullptr && p2 != nullptr) {
+                if (p1->val < p2->val) {
+                    curr->next = p1;
+                    curr = p1;
+                    p1 = p1->next;
+                } else {
+                    curr->next = p2;
+                    curr = p2;
+                    p2 = p2->next;
+                }
+            } else if (p1 != nullptr) {
+                curr->next = p1;
+                curr = p1;
                 p1 = p1->next;
-            } else {
-                p3->next = new ListNode(p2->val);
-                p3 = p3->next;
+            } else if (p2 != nullptr) {
+                curr->next = p2;
+                curr = p2;
                 p2 = p2->next;
             }
         }
-        while (p1) {
-            p3->next = new ListNode(p1->val);
-            p3 = p3->next;
-            p1 = p1->next;
-        }
-        while (p2) {
-            p3->next = new ListNode(p2->val);
-            p3 = p3->next;
-            p2 = p2->next;
-        }
 
-        p3 = ph->next;
-        delete ph;
-        return p3;
+        curr = vhead;
+        vhead = vhead->next;
+        delete curr;
+
+        return vhead;
     }
 };

@@ -9,46 +9,43 @@ struct ListNode {
 };
 
 class Solution {
-  public:
-    ListNode *reverseKGroup(ListNode *head, int k) {
-        if (head == nullptr)
-            return nullptr;
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (k == 1)
+            return head;
 
-        ListNode *list = new ListNode(0, head);
-        ListNode *prev = list;
-        ListNode *curr = head;
-        ListNode *next = head;
+        auto vhead = new ListNode(0, head);
+        auto p = vhead;
 
-        while (curr) {
+        auto reverseK = [&](ListNode* node) -> ListNode* {
+            auto kth = node->next;
             for (int i = 0; i < k; i++) {
-                if (!next)
-                    return list->next;
-                next = next->next;
+                if (kth == nullptr)
+                    return nullptr;
+                else
+                    kth = kth->next;
             }
+            auto p1 = node->next;
+            auto p2 = node->next->next;
+            for (int i = 0; i < k - 1; i++) {
+                auto t = p2->next;
+                p2->next = p1;
+                p1 = p2;
+                p2 = t;
+            }
+            kth = node->next;
+            node->next->next = p2;
+            node->next = p1;
+            return kth;
+        };
 
-            std::pair<ListNode *, ListNode *> ret = reverseKNode(curr, k);
-            prev->next = ret.first;
-            prev = ret.second;
-            prev->next = next;
-            curr = next;
+        while (p != nullptr) {
+            p = reverseK(p);
         }
 
-        return list->next;
-    }
-
-  private:
-    std::pair<ListNode *, ListNode *> reverseKNode(ListNode *head, int k) {
-        ListNode *prev = nullptr;
-        ListNode *curr = head;
-        ListNode *next = head->next;
-
-        for (int i = 0; i < k; i++) {
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-            next = curr ? curr->next : nullptr;
-        }
-
-        return std::make_pair(prev, head);
+        p = vhead;
+        vhead = vhead->next;
+        delete p;
+        return vhead;
     }
 };

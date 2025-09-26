@@ -12,6 +12,7 @@ class Solution {
 
         auto pa = headA;
         auto pb = headB;
+        
         while (pa != pb) {
             pa = (pa == nullptr) ? headB : pa->next;
             pb = (pb == nullptr) ? headA : pb->next;
