@@ -12,12 +12,12 @@ struct TreeNode {
 
 class Solution {
   public:
-    int maxDepth(TreeNode *root) { return searchHeight(root, 0); }
-
-  private:
-    int searchHeight(TreeNode *node, int h) {
-        return node == nullptr ? h
-                               : std::max(searchHeight(node->left, h + 1),
-                                          searchHeight(node->right, h + 1));
+    int maxDepth(TreeNode *root) {
+        auto getDepth = [](auto &&self, TreeNode *node, int h) -> int {
+            return node == nullptr ? h
+                                   : std::max(self(self, node->left, h + 1),
+                                              self(self, node->right, h + 1));
+        };
+        return getDepth(getDepth, root, 0);
     }
 };

@@ -14,17 +14,17 @@ class Solution {
   public:
     std::vector<int> inorderTraversal(TreeNode *root) {
         std::vector<int> res;
-        inorder(root, res);
+
+        auto inorder = [&](auto &&self, TreeNode *node) {
+            if (node == nullptr)
+                return;
+            self(self, node->left);
+            res.push_back(node->val);
+            self(self, node->right);
+        };
+
+        inorder(inorder, root);
+
         return res;
-    }
-
-  private:
-    void inorder(TreeNode *node, std::vector<int> &res) {
-        if (node == nullptr)
-            return;
-
-        inorder(node->left, res);
-        res.push_back(node->val);
-        inorder(node->right, res);
     }
 };
