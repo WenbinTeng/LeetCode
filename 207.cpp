@@ -1,38 +1,40 @@
-#include <queue>
+#include <unordered_map>
 #include <vector>
 
 class Solution {
   public:
     bool canFinish(int numCourses,
                    std::vector<std::vector<int>> &prerequisites) {
-        std::vector<std::vector<int>> edges(numCourses);
-        std::vector<int> indeg(numCourses, 0);
-        std::queue<int> q;
-        int cnt = 0;
+        bool valid = true;
+        std::vector<int> visited(numCourses, 0);
+        std::unordered_map<int, std::vector<int>> adj;
 
-        for (const auto &info : prerequisites) {
-            edges[info[1]].push_back(info[0]);
-            indeg[info[0]] += 1;
+        for (auto &req : prerequisites) {
+            adj[req[1]].push_back(req[0]);
         }
 
-        for (int i = 0; i < numCourses; ++i) {
-            if (indeg[i] == 0) {
-                q.push(i);
-            }
-        }
-
-        while (!q.empty()) {
-            ++cnt;
-
-            for (const auto &iter : edges[q.front()]) {
-                if (--indeg[iter] == 0) {
-                    q.push(iter);
+        auto dfs = [&](auto &&self, int u) -> void {
+            visited[u] = 1;
+            for (auto v : adj[u]) {
+                if (!visited[v]) {
+                    self(self, v);
+                    if (!valid) {
+                        return;
+                    }
+                } else if (visited[v] == 1) {
+                    valid = false;
+                    return;
                 }
             }
+            visited[u] = 2;
+        };
 
-            q.pop();
+        for (int i = 0; i < numCourses && valid; i++) {
+            if (!visited[i]) {
+                dfs(dfs, i);
+            }
         }
 
-        return cnt == numCourses;
+        return valid;
     }
 };

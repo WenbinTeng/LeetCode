@@ -3,29 +3,31 @@
 class Solution {
   public:
     int numIslands(std::vector<std::vector<char>> &grid) {
+        const int m = grid.size();
+        const int n = grid[0].size();
         int res = 0;
 
-        for (int i = 0; i < grid.size(); ++i)
-            for (int j = 0; j < grid[0].size(); ++j)
-                if (grid[i][j] == '1') {
-                    dfs(grid, i, j);
-                    ++res;
+        auto dfs = [&](auto &&self, int x, int y) -> void {
+            grid[x][y] = '0';
+            if (x - 1 >= 0 && grid[x - 1][y] == '1')
+                self(self, x - 1, y);
+            if (x + 1 < m && grid[x + 1][y] == '1')
+                self(self, x + 1, y);
+            if (y - 1 >= 0 && grid[x][y - 1] == '1')
+                self(self, x, y - 1);
+            if (y + 1 < n && grid[x][y + 1] == '1')
+                self(self, x, y + 1);
+        };
+
+        for (int x = 0; x < m; x++) {
+            for (int y = 0; y < n; y++) {
+                if (grid[x][y] == '1') {
+                    dfs(dfs, x, y);
+                    res++;
                 }
+            }
+        }
 
         return res;
-    }
-
-  private:
-    void dfs(std::vector<std::vector<char>> &grid, int i, int j) {
-        grid[i][j] = '0';
-
-        if (i > 0 && grid[i - 1][j] == '1')
-            dfs(grid, i - 1, j);
-        if (i < grid.size() - 1 && grid[i + 1][j] == '1')
-            dfs(grid, i + 1, j);
-        if (j > 0 && grid[i][j - 1] == '1')
-            dfs(grid, i, j - 1);
-        if (j < grid[0].size() - 1 && grid[i][j + 1] == '1')
-            dfs(grid, i, j + 1);
     }
 };
