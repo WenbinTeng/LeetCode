@@ -1,3 +1,5 @@
+#include <algorithm>
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -9,20 +11,21 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    int kthSmallest(TreeNode* root, int k) {
+  public:
+    int diameterOfBinaryTree(TreeNode *root) {
         int res = 0;
-        auto inorder = [&](auto&& self, TreeNode* node, int k) -> int {
+
+        auto postorder = [&](auto &&self, TreeNode *node) -> int {
             if (node == nullptr)
                 return 0;
-            int lh = self(self, node->left, k);
-            if (lh == k - 1) {
-                res = node->val;
-            }
-            int rh = self(self, node->right, k - lh - 1);
-            return lh + rh + 1;
+            int lh = self(self, node->left);
+            int rh = self(self, node->right);
+            res = std::max(res, lh + rh + 1);
+            return std::max(lh, rh) + 1;
         };
-        inorder(inorder, root, k);
-        return res;
+
+        postorder(postorder, root);
+
+        return res - 1;
     }
 };

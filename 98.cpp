@@ -1,4 +1,4 @@
-#include <limits>
+#include <vector>
 
 struct TreeNode {
     int val;
@@ -11,23 +11,30 @@ struct TreeNode {
 };
 
 class Solution {
-  public:
-    bool isValidBST(TreeNode *root) {
-        return root == nullptr ? false
-                               : inorder(root, -LLONG_MAX - 1, LLONG_MAX);
-    }
-
-  private:
-    bool inorder(TreeNode *node, long long lower, long long upper) {
-        if (node == nullptr)
-            return true;
-
+public:
+    bool isValidBST(TreeNode* root) {
         bool res = true;
-
-        res = res && inorder(node->left, lower, node->val);
-        res = res && node->val > lower && node->val < upper;
-        res = res && inorder(node->right, node->val, upper);
-
+        auto postorder = [&](auto&& self, TreeNode* node) -> std::vector<int> {
+            if (node->left == nullptr && node->right == nullptr)
+                return {node->val, node->val};
+            std::vector<int> v = {node->val, node->val};
+            if (node->left != nullptr) {
+                auto lv = self(self, node->left);
+                int lmin = lv[0];
+                int lmax = lv[1];
+                res = res & lmax < node->val;
+                v[0] = lmin;
+            }
+            if (node->right != nullptr) {
+                auto rv = self(self, node->right);
+                int rmin = rv[0];
+                int rmax = rv[1];
+                res = res & rmin > node->val;
+                v[1] = rmax;
+            }
+            return v;
+        };
+        postorder(postorder, root);
         return res;
     }
 };

@@ -22,19 +22,17 @@ class Solution {
         q.push(root);
 
         while (!q.empty()) {
-            res.push_back({});
-
-            for (int i = q.size(); i > 0; --i) {
-                if (q.front() != nullptr) {
-                    res.back().push_back(q.front()->val);
+            auto n = q.size();
+            std::vector<int> layer;
+            for (int i = 0; i < n; i++) {
+                layer.push_back(q.front()->val);
+                if (q.front()->left != nullptr)
                     q.push(q.front()->left);
+                if (q.front()->right != nullptr)
                     q.push(q.front()->right);
-                }
                 q.pop();
             }
-
-            if (res.back().empty())
-                res.pop_back();
+            res.push_back(layer);
         }
 
         return res;
