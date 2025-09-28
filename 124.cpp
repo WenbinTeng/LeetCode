@@ -11,24 +11,22 @@ struct TreeNode {
 };
 
 class Solution {
-  public:
-    int maxPathSum(TreeNode *root) {
-        searchPath(root);
-        return maxVal;
-    }
+public:
+    int maxPathSum(TreeNode* root) {
+        int res = INT_MIN;
+        
+        auto dfs = [&](auto&& self, TreeNode* node) -> int {
+            if (node == nullptr)
+                return 0;
+            int lsum = std::max(0, self(self, node->left));
+            int rsum = std::max(0, self(self, node->right));
+            int path = lsum + rsum + node->val;
+            res = std::max(res, path);
+            return node->val + std::max(lsum, rsum);
+        };
 
-  private:
-    int maxVal = -INT_MAX - 1;
+        dfs(dfs, root);
 
-    int searchPath(TreeNode *node) {
-        if (node == nullptr)
-            return 0;
-
-        int left = std::max(0, searchPath(node->left));
-        int right = std::max(0, searchPath(node->right));
-
-        maxVal = std::max(maxVal, node->val + left + right);
-
-        return node->val + std::max(left, right);
+        return res;
     }
 };

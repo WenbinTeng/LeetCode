@@ -1,5 +1,3 @@
-#include <vector>
-
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -13,22 +11,19 @@ struct TreeNode {
 class Solution {
   public:
     void flatten(TreeNode *root) {
-        std::vector<TreeNode *> rec;
-
-        preorder(root, rec);
-
-        for (int i = 1; i < rec.size(); ++i) {
-            rec[i - 1]->left = nullptr;
-            rec[i - 1]->right = rec[i];
-        }
-    }
-
-  private:
-    void preorder(TreeNode *node, std::vector<TreeNode *> &rec) {
-        if (node != nullptr) {
-            rec.push_back(node);
-            preorder(node->left, rec);
-            preorder(node->right, rec);
+        auto curr = root;
+        while (curr != nullptr) {
+            if (curr->left != nullptr) {
+                auto next = curr->left;
+                auto predecessor = next;
+                while (predecessor->right != nullptr) {
+                    predecessor = predecessor->right;
+                }
+                predecessor->right = curr->right;
+                curr->left = nullptr;
+                curr->right = next;
+            }
+            curr = curr->right;
         }
     }
 };

@@ -1,3 +1,4 @@
+#include <unordered_map>
 #include <vector>
 
 struct TreeNode {
@@ -13,28 +14,24 @@ struct TreeNode {
 class Solution {
   public:
     TreeNode *buildTree(std::vector<int> &preorder, std::vector<int> &inorder) {
-        return preorder.empty() || inorder.empty()
-                   ? nullptr
-                   : buildNode(preorder, inorder, 0, inorder.size() - 1);
-    }
+        const int n = preorder.size();
+        std::unordered_map<int, int> dict;
 
-  private:
-    int index = 0;
-
-    TreeNode *buildNode(std::vector<int> &preorder, std::vector<int> &inorder,
-                        int inBegin, int inEnd) {
-        if (index == preorder.size())
-            return nullptr;
-
-        for (int i = inBegin; i <= inEnd; ++i) {
-            if (preorder[index] == inorder[i]) {
-                return new TreeNode(
-                    preorder[index++],
-                    buildNode(preorder, inorder, inBegin, i - 1),
-                    buildNode(preorder, inorder, i + 1, inEnd));
-            }
+        for (int i = 0; i < n; i++) {
+            dict[inorder[i]] = i;
         }
 
-        return nullptr;
+        auto build = [&](auto &&self, int root, int inleft,
+                         int inright) -> TreeNode * {
+            if (inleft > inright)
+                return nullptr;
+            int index = dict[preorder[root]];
+            auto lt = self(self, root + 1, inleft, index - 1);
+            auto rt =
+                self(self, root + (index - inleft + 1), index + 1, inright);
+            return new TreeNode(preorder[root], lt, rt);
+        };
+
+        return build(build, 0, 0, n - 1);
     }
 };
