@@ -4,24 +4,26 @@
 class Solution {
   public:
     std::vector<std::string> generateParenthesis(int n) {
-        generate("", n, n);
-        return res;
-    }
+        std::vector<std::string> res;
+        std::string path(2 * n, 0);
 
-  private:
-    std::vector<std::string> res;
-
-    void generate(std::string s, int l, int r) {
-        if (l == 0 && r == 0)
-            res.push_back(s);
-        else {
-            if (l > r)
+        auto backtrack = [&](auto &&self, int left, int right) -> void {
+            if (right == n) {
+                res.push_back(path);
                 return;
-            if (l > 0)
-                generate(s + '(', l - 1, r);
-            if (r > 0)
-                generate(s + ')', l, r - 1);
-        }
-        return;
+            }
+            if (left < n) {
+                path[left + right] = '(';
+                self(self, left + 1, right);
+            }
+            if (right < left) {
+                path[left + right] = ')';
+                self(self, left, right + 1);
+            }
+        };
+
+        backtrack(backtrack, 0, 0);
+
+        return res;
     }
 };

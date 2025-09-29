@@ -4,31 +4,31 @@ class Solution {
   public:
     std::vector<std::vector<int>> combinationSum(std::vector<int> &candidates,
                                                  int target) {
+        const int n = candidates.size();
         std::vector<std::vector<int>> res;
-        std::vector<int> sel;
+        std::vector<int> used(n, 0);
+        std::vector<int> path;
 
-        dfs(candidates, res, sel, target, 0);
+        auto backtrack = [&](auto &self, int index, int sum) -> void {
+            if (sum == target) {
+                res.push_back(path);
+                return;
+            }
+            if (index == n) {
+                return;
+            }
+
+            self(self, index + 1, sum);
+
+            if (sum + candidates[index] <= target) {
+                path.push_back(candidates[index]);
+                self(self, index, sum + candidates[index]);
+                path.pop_back();
+            }
+        };
+
+        backtrack(backtrack, 0, 0);
 
         return res;
-    }
-
-  private:
-    void dfs(std::vector<int> &candidates, std::vector<std::vector<int>> &res,
-             std::vector<int> &sel, int target, int index) {
-        if (index == candidates.size())
-            return;
-
-        if (target == 0) {
-            res.push_back(sel);
-            return;
-        }
-
-        dfs(candidates, res, sel, target, index + 1);
-
-        if (target - candidates[index] >= 0) {
-            sel.push_back(candidates[index]);
-            dfs(candidates, res, sel, target - candidates[index], index);
-            sel.pop_back();
-        }
     }
 };

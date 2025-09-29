@@ -4,39 +4,33 @@
 class Solution {
   public:
     std::vector<std::vector<std::string>> partition(std::string s) {
+        const int n = s.size();
         std::vector<std::vector<std::string>> res;
-        std::vector<std::string> rec;
-        std::vector<std::vector<bool>> dp(s.size(),
-                                          std::vector<bool>(s.size(), false));
+        std::vector<std::string> path;
+        std::vector<std::vector<int>> f(n, std::vector<int>(n, true));
 
-        for (int i = 0; i < s.size(); ++i) {
-            for (int j = 0; j <= i; ++j) {
-                dp[j][i] = i == j || i == j + 1
-                               ? s[i] == s[j]
-                               : s[i] == s[j] && dp[j + 1][i - 1];
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 1; j < n; j++) {
+                f[i][j] = (s[i] == s[j]) && f[i + 1][j - 1];
             }
         }
 
-        dfs(s, res, rec, dp, 0);
+        auto backtrack = [&](auto &&self, int index) -> void {
+            if (index == n) {
+                res.push_back(path);
+                return;
+            }
+            for (int j = index; j < n; j++) {
+                if (f[index][j]) {
+                    path.push_back(s.substr(index, j - index + 1));
+                    self(self, j + 1);
+                    path.pop_back();
+                }
+            }
+        };
+
+        backtrack(backtrack, 0);
 
         return res;
-    }
-
-  private:
-    void dfs(std::string &s, std::vector<std::vector<std::string>> &res,
-             std::vector<std::string> &rec, std::vector<std::vector<bool>> &dp,
-             int index) {
-        if (index == s.size()) {
-            res.push_back(rec);
-            return;
-        }
-
-        for (int i = index; i < s.size(); ++i) {
-            if (dp[index][i]) {
-                rec.push_back(s.substr(index, i - index + 1));
-                dfs(s, res, rec, dp, i + 1);
-                rec.pop_back();
-            }
-        }
     }
 };

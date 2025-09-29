@@ -4,55 +4,53 @@
 class Solution {
   public:
     bool exist(std::vector<std::vector<char>> &board, std::string word) {
-        int m = board.size();
-        int n = board[0].size();
-        std::vector<std::vector<bool>> vis(m, std::vector<bool>(n, false));
+        const int m = board.size();
+        const int n = board[0].size();
+        bool res = false;
+        std::vector<std::vector<int>> visited(m, std::vector<int>(n, 0));
 
-        for (int i = 0; i < m * n && !finded; i++) {
-            if (board[i / n][i % n] == word[0]) {
-                vis[i / n][i % n] = true;
-                dfs(board, word, vis, 1, i / n, i % n);
-                vis[i / n][i % n] = false;
+        auto backtrack = [&](auto &&self, int x, int y, int index) -> void {
+            if (index == word.size()) {
+                res = true;
+                return;
+            }
+
+            if (x - 1 >= 0 && !visited[x - 1][y] &&
+                board[x - 1][y] == word[index] && !res) {
+                visited[x - 1][y] = 1;
+                self(self, x - 1, y, index + 1);
+                visited[x - 1][y] = 0;
+            }
+            if (x + 1 < m && !visited[x + 1][y] &&
+                board[x + 1][y] == word[index] && !res) {
+                visited[x + 1][y] = 1;
+                self(self, x + 1, y, index + 1);
+                visited[x + 1][y] = 0;
+            }
+            if (y - 1 >= 0 && !visited[x][y - 1] &&
+                board[x][y - 1] == word[index] && !res) {
+                visited[x][y - 1] = 1;
+                self(self, x, y - 1, index + 1);
+                visited[x][y - 1] = 0;
+            }
+            if (y + 1 < n && !visited[x][y + 1] &&
+                board[x][y + 1] == word[index] && !res) {
+                visited[x][y + 1] = 1;
+                self(self, x, y + 1, index + 1);
+                visited[x][y + 1] = 0;
+            }
+        };
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!res && board[i][j] == word[0]) {
+                    visited[i][j] = 1;
+                    backtrack(backtrack, i, j, 1);
+                    visited[i][j] = 0;
+                }
             }
         }
 
-        return finded;
-    }
-
-  private:
-    bool finded;
-
-    void dfs(std::vector<std::vector<char>> &board, std::string &word,
-             std::vector<std::vector<bool>> &vis, int pos, int i, int j) {
-        if (finded)
-            return;
-
-        if (pos == word.size()) {
-            finded = true;
-            return;
-        }
-
-        if (i > 0 && board[i - 1][j] == word[pos] && !vis[i - 1][j]) {
-            vis[i - 1][j] = true;
-            dfs(board, word, vis, pos + 1, i - 1, j);
-            vis[i - 1][j] = false;
-        }
-        if (j > 0 && board[i][j - 1] == word[pos] && !vis[i][j - 1]) {
-            vis[i][j - 1] = true;
-            dfs(board, word, vis, pos + 1, i, j - 1);
-            vis[i][j - 1] = false;
-        }
-        if (i < board.size() - 1 && board[i + 1][j] == word[pos] &&
-            !vis[i + 1][j]) {
-            vis[i + 1][j] = true;
-            dfs(board, word, vis, pos + 1, i + 1, j);
-            vis[i + 1][j] = false;
-        }
-        if (j < board[0].size() - 1 && board[i][j + 1] == word[pos] &&
-            !vis[i][j + 1]) {
-            vis[i][j + 1] = true;
-            dfs(board, word, vis, pos + 1, i, j + 1);
-            vis[i][j + 1] = false;
-        }
+        return res;
     }
 };
