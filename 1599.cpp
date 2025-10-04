@@ -9,7 +9,7 @@ class Solution {
         int brdCnt = 0;
         int gndCnt = 0;
 
-        for (int i = 0; i<customers.size() | gndCnt> 0; ++i) {
+        for (int i = 0; i < customers.size() | gndCnt > 0; ++i) {
             if (i < customers.size()) {
                 gndCnt += customers[i];
             }

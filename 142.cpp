@@ -7,7 +7,7 @@ struct ListNode {
 };
 
 class Solution {
-public:
+  public:
     ListNode *detectCycle(ListNode *head) {
         auto slowPtr = head;
         auto fastPtr = head;

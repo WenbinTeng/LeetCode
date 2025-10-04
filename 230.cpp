@@ -9,10 +9,10 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    int kthSmallest(TreeNode* root, int k) {
+  public:
+    int kthSmallest(TreeNode *root, int k) {
         int res = 0;
-        auto inorder = [&](auto&& self, TreeNode* node, int k) -> int {
+        auto inorder = [&](auto &&self, TreeNode *node, int k) -> int {
             if (node == nullptr)
                 return 0;
             int lh = self(self, node->left, k);

@@ -7,8 +7,8 @@ struct ListNode {
 };
 
 class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
+  public:
+    ListNode *reverseList(ListNode *head) {
         if (head == nullptr)
             return nullptr;
 

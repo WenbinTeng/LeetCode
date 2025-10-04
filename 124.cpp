@@ -11,11 +11,11 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    int maxPathSum(TreeNode* root) {
+  public:
+    int maxPathSum(TreeNode *root) {
         int res = INT_MIN;
-        
-        auto dfs = [&](auto&& self, TreeNode* node) -> int {
+
+        auto dfs = [&](auto &&self, TreeNode *node) -> int {
             if (node == nullptr)
                 return 0;
             int lsum = std::max(0, self(self, node->left));

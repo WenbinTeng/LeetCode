@@ -11,10 +11,10 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    bool isValidBST(TreeNode* root) {
+  public:
+    bool isValidBST(TreeNode *root) {
         bool res = true;
-        auto postorder = [&](auto&& self, TreeNode* node) -> std::vector<int> {
+        auto postorder = [&](auto &&self, TreeNode *node) -> std::vector<int> {
             if (node->left == nullptr && node->right == nullptr)
                 return {node->val, node->val};
             std::vector<int> v = {node->val, node->val};

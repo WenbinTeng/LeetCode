@@ -9,15 +9,15 @@ struct ListNode {
 };
 
 class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
+  public:
+    ListNode *reverseKGroup(ListNode *head, int k) {
         if (k == 1)
             return head;
 
         auto vhead = new ListNode(0, head);
         auto p = vhead;
 
-        auto reverseK = [&](ListNode* node) -> ListNode* {
+        auto reverseK = [&](ListNode *node) -> ListNode * {
             auto kth = node->next;
             for (int i = 0; i < k; i++) {
                 if (kth == nullptr)

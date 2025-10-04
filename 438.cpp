@@ -1,9 +1,9 @@
-#include <vector>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 class Solution {
-public:
+  public:
     std::vector<int> findAnagrams(std::string s, std::string p) {
         if (s.size() < p.size())
             return {};

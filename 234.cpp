@@ -9,16 +9,16 @@ struct ListNode {
 };
 
 class Solution {
-public:
-    bool isPalindrome(ListNode* head) {
+  public:
+    bool isPalindrome(ListNode *head) {
         frontNode = head;
         return recursiveCheck(head);
     }
 
-private:
-    ListNode* frontNode;
+  private:
+    ListNode *frontNode;
 
-    bool recursiveCheck(ListNode* currNode) {
+    bool recursiveCheck(ListNode *currNode) {
         if (currNode != nullptr) {
             if (!recursiveCheck(currNode->next))
                 return false;
