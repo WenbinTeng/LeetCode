@@ -6,12 +6,17 @@ class MinStack {
 
     void push(int val) {
         valStack.push(val);
-        minStack.push(std::min(minStack.top(), val));
+        if (val <= minStack.top()) {
+            minStack.push(val);
+        }
     }
 
     void pop() {
+        auto top = valStack.top();
+        if (top == minStack.top()) {
+            minStack.pop();
+        }
         valStack.pop();
-        minStack.pop();
     }
 
     int top() { return valStack.top(); }
@@ -19,8 +24,8 @@ class MinStack {
     int getMin() { return minStack.top(); }
 
   private:
-    std::stack<int> valStack;
     std::stack<int> minStack;
+    std::stack<int> valStack;
 };
 
 /**

@@ -1,42 +1,26 @@
+#include <stack>
 #include <string>
-#include <vector>
 
 class Solution {
   public:
     bool isValid(std::string s) {
-        if (s.size() == 0)
-            return true;
+        std::stack<char> st;
 
-        std::vector<char> stack;
-
-        for (int i = 0; i < s.size(); i++) {
-            switch (s[i]) {
-            case '(':
-            case '[':
-            case '{':
-                stack.push_back(s[i]);
-                break;
-            case ')':
-                if (!stack.empty() && stack.back() == '(') {
-                    stack.pop_back();
-                    break;
-                } else
+        for (auto c : s) {
+            if (c == '(') {
+                st.push(')');
+            } else if (c == '[') {
+                st.push(']');
+            } else if (c == '{') {
+                st.push('}');
+            } else {
+                if (st.empty() || st.top() != c) {
                     return false;
-            case ']':
-                if (!stack.empty() && stack.back() == '[') {
-                    stack.pop_back();
-                    break;
-                } else
-                    return false;
-            case '}':
-                if (!stack.empty() && stack.back() == '{') {
-                    stack.pop_back();
-                    break;
-                } else
-                    return false;
+                }
+                st.pop();
             }
         }
 
-        return stack.empty();
+        return st.empty();
     }
 };
