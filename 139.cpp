@@ -5,24 +5,24 @@
 class Solution {
   public:
     bool wordBreak(std::string s, std::vector<std::string> &wordDict) {
-        auto dp = std::vector<bool>(s.size() + 1);
-        auto wordDictSet = std::unordered_set<std::string>();
+        const int n = s.size();
+        std::unordered_set<std::string> dict;
+        std::vector<int> dp(n + 1, 0);
 
-        for (const auto word : wordDict) {
-            wordDictSet.insert(word);
+        for (auto word : wordDict) {
+            dict.insert(word);
         }
 
-        dp[0] = true;
-        for (int i = 1; i <= s.size(); ++i) {
-            for (int j = 0; j < i; ++j) {
-                if (dp[j] &&
-                    wordDictSet.find(s.substr(j, i - j)) != wordDictSet.end()) {
-                    dp[i] = true;
+        dp[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && dict.count(s.substr(j, i - j))) {
+                    dp[i] = 1;
                     break;
                 }
             }
         }
 
-        return dp[s.size()];
+        return dp[n];
     }
 };

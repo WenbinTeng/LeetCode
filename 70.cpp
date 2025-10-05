@@ -3,15 +3,17 @@
 class Solution {
   public:
     int climbStairs(int n) {
-        mem = std::vector<int>(n + 1, -1);
-        return dfs(n);
-    }
+        if (n == 1)
+            return 1;
 
-  private:
-    std::vector<int> mem;
+        std::vector<int> dp(n + 1);
 
-    int dfs(int n) {
-        return mem[n] == -1 ? (mem[n] = n <= 1 ? 1 : dfs(n - 1) + dfs(n - 2))
-                            : mem[n];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
     }
 };

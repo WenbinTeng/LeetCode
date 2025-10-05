@@ -5,18 +5,14 @@ class Solution {
     std::vector<std::vector<int>> generate(int numRows) {
         std::vector<std::vector<int>> res(numRows);
 
-        for (int i = 0; i < numRows; ++i) {
-            for (int j = 0; j <= i; ++j) {
-                if (j == 0) {
-                    res[i].push_back(1);
-                    continue;
-                }
-                if (j == i) {
-                    res[i].push_back(1);
-                    continue;
-                }
-
-                res[i].push_back(res[i - 1][j - 1] + res[i - 1][j]);
+        res[0].push_back(1);
+        for (int i = 1; i < numRows; i++) {
+            int numCols = i + 1;
+            res[i].resize(numCols);
+            res[i][0] = 1;
+            res[i][numCols - 1] = 1;
+            for (int j = 1; j < numCols - 1; j++) {
+                res[i][j] = res[i - 1][j - 1] + res[i - 1][j];
             }
         }
 
