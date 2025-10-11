@@ -1,26 +1,38 @@
 #include <vector>
 
 class Solution {
-  public:
-    int projectionArea(std::vector<std::vector<int>> &grid) {
-        int xyArea = 0;
-        int yzArea = 0;
-        int zxArea = 0;
+public:
+    int projectionArea(std::vector<std::vector<int>>& grid) {
+        const int m = grid.size();
+        const int n = grid[0].size();
+        int areaXY = 0;
+        int areaXZ = 0;
+        int areaYZ = 0;
 
-        for (int i = 0; i < grid.size(); i++) {
-            int yzHeight = 0;
-            int zxHeight = 0;
-
-            for (int j = 0; j < grid.size(); j++) {
-                xyArea += grid[i][j] > 0 ? 1 : 0;
-                yzHeight = std::max(yzHeight, grid[j][i]);
-                zxHeight = std::max(zxHeight, grid[i][j]);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != 0) {
+                    areaXY++;
+                }
             }
-
-            yzArea += yzHeight;
-            zxArea += zxHeight;
         }
 
-        return xyArea + yzArea + zxArea;
+        for (int i = 0; i < m; i++) {
+            int maxH = 0;
+            for (int j = 0; j < n; j++) {
+                maxH = std::max(maxH, grid[i][j]);
+            }
+            areaXZ += maxH;
+        }
+
+        for (int j = 0; j < n; j++) {
+            int maxH = 0;
+            for (int i = 0; i < m; i++) {
+                maxH = std::max(maxH, grid[i][j]);
+            }
+            areaYZ += maxH;
+        }
+
+        return areaXY + areaXZ + areaYZ;
     }
 };
