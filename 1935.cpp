@@ -1,9 +1,9 @@
-#include <string>
 #include <sstream>
+#include <string>
 #include <unordered_set>
 
 class Solution {
-public:
+  public:
     int canBeTypedWords(std::string text, std::string brokenLetters) {
         int res = 0;
         std::unordered_set<char> dict;
